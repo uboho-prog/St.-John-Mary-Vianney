@@ -865,13 +865,13 @@
         <div class="max-w-lg mx-auto bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 space-y-4">
           <p class="text-xs uppercase tracking-widest text-[#A8D4BE] font-bold">Select Donation Amount</p>
           <div class="grid grid-cols-4 gap-3">
-            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="25">$25</button>
-            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="50">$50</button>
-            <button class="donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="100">$100</button>
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="10000">₦10,000</button>
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="50000">₦50,000</button>
+            <button class="donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="100000">₦100,000</button>
             <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="custom">Other</button>
           </div>
           <div class="flex items-center space-x-2 pt-2">
-            <span class="text-xs text-white/60 text-center w-full block">Each dollar represents warm recognition for those who administered sacraments all their lives.</span>
+            <span class="text-xs text-white/60 text-center w-full block">Each contribution represents warm recognition for those who administered sacraments all their lives.</span>
           </div>
         </div>
 
@@ -1122,14 +1122,14 @@
               Every donation provides safe shelter, daily nutrition, and medical attention for elderly priests in their retirement.
             </p>
             <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-tealPrimary text-2xl font-serif">$</span>
-              <input type="number" id="custom-donation-input" class="block w-full py-4 pl-10 pr-4 text-3xl font-serif text-tealPrimary border-2 border-slateWarm rounded-2xl focus:border-accent focus:ring focus:ring-accent/20 focus:outline-none transition-all placeholder:text-slateWarm" placeholder="100" min="5">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-tealPrimary text-2xl font-serif">₦</span>
+              <input type="number" id="custom-donation-input" class="block w-full py-4 pl-10 pr-4 text-3xl font-serif text-tealPrimary border-2 border-slateWarm rounded-2xl focus:border-accent focus:ring focus:ring-accent/20 focus:outline-none transition-all placeholder:text-slateWarm" placeholder="50000" min="1000">
             </div>
             <div class="grid grid-cols-4 gap-2 pt-2">
-              <button onclick="setModalAmount(25)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$25</button>
-              <button onclick="setModalAmount(50)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$50</button>
-              <button onclick="setModalAmount(100)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-slateWarm font-mono">$100</button>
-              <button onclick="setModalAmount(250)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$250</button>
+              <button onclick="setModalAmount(10000)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">₦10,000</button>
+              <button onclick="setModalAmount(50000)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">₦50,000</button>
+              <button onclick="setModalAmount(100000)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-slateWarm font-mono">₦100,000</button>
+              <button onclick="document.getElementById('custom-donation-input').value='';document.getElementById('custom-donation-input').focus()" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">Other</button>
             </div>
             <button onclick="proceedToPayment()" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all tracking-wider text-sm mt-4 uppercase">
               Proceed to Payment
@@ -1141,7 +1141,7 @@
             <div class="bg-sand p-3.5 rounded-2xl flex justify-between items-center border border-tealPrimary/5">
               <div>
                 <span class="text-xs text-[#8c969b] block font-semibold uppercase tracking-wider">Offer Amount</span>
-                <span class="text-2xl font-serif font-bold text-tealPrimary" id="payment-display-amount">$100.00</span>
+                <span class="text-2xl font-serif font-bold text-tealPrimary" id="payment-display-amount">₦137,800.00</span>
               </div>
               <button onclick="showStepAmount()" class="text-xs text-tealPrimary hover:text-accent font-bold underline transition-colors">
                 Change Amount
@@ -1251,7 +1251,7 @@
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-gray-400 font-medium font-semibold">Amount Received</span>
-                <span class="text-xl font-serif font-bold text-tealPrimary" id="receipt-amount">$100.00</span>
+                <span class="text-xl font-serif font-bold text-tealPrimary" id="receipt-amount">₦137,800.00</span>
               </div>
             </div>
 
@@ -1433,7 +1433,7 @@
 
       function setPaymentDisplay(amount) {
         currentOfferAmount = amount;
-        document.getElementById('payment-display-amount').innerText = '$' + parseFloat(amount).toFixed(2);
+        document.getElementById('payment-display-amount').innerText = '₦' + parseFloat(amount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         
         document.getElementById('modal-step-amount').classList.add('hidden');
         document.getElementById('modal-step-payment').classList.remove('hidden');
@@ -1496,7 +1496,7 @@
           
           document.getElementById('receipt-id').innerText = receiptId;
           document.getElementById('receipt-date').innerText = receiptDate;
-          document.getElementById('receipt-amount').innerText = '$' + parseFloat(currentOfferAmount).toFixed(2);
+          document.getElementById('receipt-amount').innerText = '₦' + parseFloat(currentOfferAmount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
           
           // Show payment completed panel
           document.getElementById('modal-step-processing').classList.add('hidden');
