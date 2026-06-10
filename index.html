@@ -1,0 +1,1550 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>St. John Mary Vianney — Caring for Senior Clergy & Religious</title>
+    <link rel="icon" type="image/png" href="/assets/asset.png">
+    <link rel="apple-touch-icon" href="/assets/asset.png">
+    
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              tealPrimary: '#1a4a5c',
+              tealDark: '#123441',
+              tealLight: '#286a83',
+              terracotta: '#e8714a',
+              terracottaLight: '#f19273',
+              terracottaDark: '#ce5028',
+              sand: '#faf6f0',
+              charcoal: '#2c3539',
+              slateWarm: '#eef1f4',
+              accent: '#A8D4BE',
+              accentDark: '#8ebd9b',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Smooth transitions */
+      .transition-all-300 {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Scrolling marquee animation */
+      @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+      }
+      
+      .animate-marquee {
+        white-space: nowrap;
+        display: inline-flex;
+        animation: marquee 30s linear infinite;
+      }
+      
+      .animate-marquee:hover {
+        animation-play-state: paused;
+      }
+
+      /* Hover underline links */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #A8D4BE;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Scrollbar customization */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #faf6f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1a4a5c;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #A8D4BE;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-sand text-charcoal flex flex-col min-h-screen">
+
+    <!-- 2. NAVIGATION BAR -->
+    <header id="main-navigation" class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-4 transition-all duration-300 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center space-x-1.5 group header-logo">
+          <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
+          <div class="flex flex-col">
+            <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-tealPrimary group-hover:text-accent transition-colors duration-300">
+              ST. JOHN MARY VIANNEY
+            </span>
+            <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-medium scale-y-95 origin-left">
+              Elderly Clergy Support Group
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-tealPrimary">
+          <a href="#home" class="nav-link transition-colors hover:text-accent">Home</a>
+          <a href="#about" class="nav-link transition-colors hover:text-accent">About</a>
+          <a href="#events" class="nav-link transition-colors hover:text-accent">Events</a>
+          <a href="#gallery" class="nav-link transition-colors hover:text-accent">Gallery</a>
+          <a href="#blog" class="nav-link transition-colors hover:text-accent">Blog</a>
+          <a href="#contact" class="nav-link transition-colors hover:text-accent">Contact</a>
+        </nav>
+
+        <!-- CTA & Hamburger -->
+        <div class="flex items-center space-x-4">
+          <a href="javascript:void(0)" onclick="openDonationModal(100)" class="hidden sm:inline-flex bg-accent hover:bg-accentDark text-tealDark font-bold text-xs md:text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 tracking-wider">
+            DONATE NOW
+          </a>
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="lg:hidden text-tealPrimary focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors" aria-label="Toggle navigation menu">
+            <i id="hamburger-icon" class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 transition-all duration-300 py-4 px-6 shadow-xl absolute top-full left-0 w-full">
+        <nav class="flex flex-col space-y-4 font-medium text-tealPrimary mb-4">
+          <a href="#home" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>Home</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+          <a href="#about" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>About</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+          <a href="#events" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>Events</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+          <a href="#gallery" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>Gallery</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+          <a href="#blog" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>Blog</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+          <a href="#contact" class="mobile-nav-link hover:text-accent py-1.5 transition-colors border-b border-gray-50 flex justify-between items-center">
+            <span>Contact</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+          </a>
+        </nav>
+        <a href="javascript:void(0)" onclick="openDonationModal(100)" class="mobile-nav-link block w-full text-center bg-accent hover:bg-accentDark text-tealDark font-bold py-3 rounded-full transition-all duration-300 shadow">
+          DONATE NOW
+        </a>
+      </div>
+    </header>
+
+    <!-- 3. HERO SECTION -->
+    <section id="home" class="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-sand via-white to-slateWarm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          <!-- Hero Left: Dynamic Inspiring Copy and Buttons -->
+          <div class="flex flex-col text-left space-y-6 lg:space-y-8">
+            <div class="space-y-2">
+              <span class="inline-block text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">
+                CARING FOR THOSE WHO SERVED
+              </span>
+              <h1 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-tealPrimary leading-[1.15] tracking-tight">
+                Honoring the Elders Who Gave Their Lives <br class="hidden md:inline"><span class="italic text-terracotta">to God</span>
+              </h1>
+            </div>
+            
+            <p class="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-xl">
+              Throughout their lifetimes, they walked with us — celebrating our baptisms, counseling our decisions, offering comfort in our sorrows, and breaking the bread of salvation. Now in their twilight years without family support, it is our turn to be their family. 
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
+              <a href="javascript:void(0)" onclick="openDonationModal(100)" class="bg-accent hover:bg-accentDark text-tealDark text-center font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all-300 transform hover:-translate-y-0.5 tracking-wider">
+                SHOW YOUR SUPPORT
+              </a>
+              <a href="#about" class="border-2 border-tealPrimary hover:bg-tealPrimary hover:text-white text-tealPrimary text-center font-bold px-8 py-3.5 rounded-full transition-all-300 tracking-wider">
+                LEARN MORE
+              </a>
+            </div>
+
+            <!-- Tiny descriptive visual counters -->
+            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200/60 max-w-lg">
+              <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-serif font-bold text-tealPrimary">45+</span>
+                <span class="text-xs text-[#8c969b] tracking-wider uppercase mt-1">Priests Assisted</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-serif font-bold text-tealPrimary">100%</span>
+                <span class="text-xs text-[#8c969b] tracking-wider uppercase mt-1">Lay Volunteer Supported</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-serif font-bold text-tealPrimary">24/7</span>
+                <span class="text-xs text-[#8c969b] tracking-wider uppercase mt-1">Compassionate Care</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero Right: Elegant SVG Illustration and Floating Contact Stamp -->
+          <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/3] rounded-2xl md:rounded-[32px] overflow-hidden shadow-2xl bg-gradient-to-tr from-tealDark via-tealPrimary to-tealLight border-4 border-white flex items-center justify-center group lg:justify-self-end">
+            
+            <!-- Custom Embedded Vector Illustration of Elderly Priest -->
+            <svg class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid background pattern -->
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                </pattern>
+                <linearGradient id="halo-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f19273" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#e8714a" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <rect width="800" height="600" fill="#143c4b" />
+              <rect width="800" height="600" fill="url(#grid)" />
+              
+              <!-- Radiant Halo Pattern behind head -->
+              <circle cx="400" cy="270" r="160" fill="url(#halo-glow)" filter="blur(10px)" />
+              <g stroke="rgba(232, 113, 74, 0.15)" stroke-width="1.5">
+                <line x1="400" y1="70" x2="400" y2="470" />
+                <line x1="200" y1="270" x2="600" y2="270" />
+                <line x1="258" y1="128" x2="542" y2="412" />
+                <line x1="258" y1="412" x2="542" y2="128" />
+              </g>
+
+              <!-- Priest Silhouette & Portrait features -->
+              <!-- Cassock/Shoulders -->
+              <path d="M 220 600 C 220 500, 260 450, 310 430 L 490 430 C 540 450, 580 500, 580 600 Z" fill="#0b1b22" />
+              <!-- Liturgical stole detailing -->
+              <path d="M 335 432 L 350 600" stroke="#9e2a2b" stroke-width="24" stroke-linecap="round" />
+              <path d="M 465 432 L 450 600" stroke="#9e2a2b" stroke-width="24" stroke-linecap="round" />
+              <path d="M 335 432 L 350 600" stroke="#e8714a" stroke-width="4" stroke-dasharray="10 5" />
+              <path d="M 465 432 L 450 600" stroke="#e8714a" stroke-width="4" stroke-dasharray="10 5" />
+              <!-- Golden cross embroidery on stole -->
+              <path d="M 342 480 L 342 505 M 333 490 L 351 490" stroke="#e8714a" stroke-width="3" stroke-linecap="round" />
+              <path d="M 458 480 L 458 505 M 449 490 L 467 490" stroke="#e8714a" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Clerical collar base -->
+              <path d="M 360 430 C 360 405, 440 405, 440 430 Z" fill="#0b1b22" />
+              <!-- Clerical white tab -->
+              <rect x="382" y="415" width="36" height="15" fill="#ffffff" rx="2" />
+
+              <!-- Head & Neck -->
+              <path d="M 365 415 L 365 370 C 365 370, 400 375, 435 370 L 435 415 Z" fill="#ebd2c1" />
+              <head-shadow>
+                <path d="M 365 375 C 365 375, 400 390, 435 375 L 435 385 C 435 385, 400 395, 365 385 Z" fill="#d9b6a0" opacity="0.6"/>
+              </head-shadow>
+
+              <!-- Serene Face -->
+              <circle cx="400" cy="270" r="95" fill="#ffdcc4" />
+              <!-- Ears -->
+              <circle cx="295" cy="270" r="16" fill="#f8ceb4" />
+              <circle cx="505" cy="270" r="16" fill="#f8ceb4" />
+
+              <!-- Silver Hair / Hair volume -->
+              <!-- Back hair -->
+              <path d="M 305 270 C 295 160, 505 160, 495 270 C 515 270, 510 240, 495 210 C 475 160, 325 160, 305 210 C 290 240, 285 270, 305 270 Z" fill="#e1e8ed" />
+              <!-- Sideburns -->
+              <path d="M 300 240 Q 310 240 310 275 L 302 275 Z" fill="#d6dee2" />
+              <path d="M 500 240 Q 490 240 490 275 L 498 275 Z" fill="#d6dee2" />
+              <!-- Sweeping hair front strands -->
+              <path d="M 315 210 C 330 180, 390 170, 400 185 C 410 170, 470 180, 485 210 C 495 190, 480 160, 400 165 C 320 160, 305 190, 315 210 Z" fill="#ffffff" />
+              <path d="M 320 195 Q 360 175 390 195" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+              <path d="M 480 195 Q 440 175 410 195" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+
+              <!-- Glasses -->
+              <circle cx="365" cy="265" r="22" stroke="#e8714a" stroke-width="4" fill="rgba(255,255,255,0.15)" />
+              <circle cx="435" cy="265" r="22" stroke="#e8714a" stroke-width="4" fill="rgba(255,255,255,0.15)" />
+              <path d="M 387 265 L 413 265" stroke="#e8714a" stroke-width="4" />
+              <path d="M 343 263 Q 325 255 310 260" stroke="#e8714a" stroke-width="3" fill="none" />
+              <path d="M 457 263 Q 475 255 490 260" stroke="#e8714a" stroke-width="3" fill="none" />
+
+              <!-- Closed smiling eyes (behind glasses) -->
+              <path d="M 353 265 Q 365 256 377 265" stroke="#704424" stroke-width="3.5" stroke-linecap="round" fill="none" />
+              <path d="M 423 265 Q 435 256 447 265" stroke="#704424" stroke-width="3.5" stroke-linecap="round" fill="none" />
+              
+              <!-- Soft wrinkles and cheeks -->
+              <path d="M 338 295 Q 350 286 360 293" stroke="#e4ae8d" stroke-width="2.5" fill="none" />
+              <path d="M 462 295 Q 450 286 440 293" stroke="#e4ae8d" stroke-width="2.5" fill="none" />
+              <!-- Kind smile -->
+              <path d="M 368 315 Q 400 342 432 315" stroke="#873e23" stroke-width="4" stroke-linecap="round" fill="none" stroke-linejoin="round" />
+              <path d="M 362 314 Q 366 322 371 316" stroke="#873e23" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              <path d="M 438 314 Q 434 322 429 316" stroke="#873e23" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              <!-- Silver eyebrows -->
+              <path d="M 345 235 Q 365 225 382 238" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" />
+              <path d="M 455 235 Q 435 225 418 238" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" />
+            </svg>
+
+            <!-- Floating Stamp Design Details -->
+            <div class="absolute inset-0 bg-gradient-to-t from-tealDark/70 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+
+            <!-- Floating Badge in bottom-left segment -->
+            <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white/95 backdrop-blur shadow-xl rounded-2xl p-3 md:p-4 border border-tealPrimary/10 flex items-center space-x-3 max-w-[260px] animate-bounce-slow">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-terracotta text-white rounded-xl flex items-center justify-center text-lg md:text-xl shadow-inner">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="flex flex-col text-left">
+                <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-semibold">Talk to a Caregiver</span>
+                <span class="font-bold text-sm md:text-base text-tealPrimary whitespace-nowrap">+234 7068534169</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PARTNER LOGOS BAR -->
+    <section class="bg-white py-8 border-y border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-xs uppercase tracking-[0.2em] text-[#8c969b] font-medium mb-6">
+          Supported & Trusted By Diocesan Networks & Catholic Groups
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 items-center justify-items-center opacity-70">
+          <!-- Logo 1: Diocese description -->
+          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+            <i class="fas fa-church text-xl text-tealPrimary"></i>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Mercy</span>
+          </div>
+          <!-- Logo 2 -->
+          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+            <i class="fas fa-dove text-xl text-tealPrimary"></i>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Diocese of St. Mary</span>
+          </div>
+          <!-- Logo 3 -->
+          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+            <i class="fas fa-heart text-xl text-tealPrimary"></i>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Catholic Charities</span>
+          </div>
+          <!-- Logo 4 -->
+          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+            <i class="fas fa-sun text-xl text-tealPrimary"></i>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Vianney Guild</span>
+          </div>
+          <!-- Logo 5 -->
+          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+            <i class="fas fa-cross text-xl text-tealPrimary"></i>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Sacred Heart Alliance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MISSION STATEMENT SECTION -->
+    <section id="about" class="py-16 md:py-24 bg-sand">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <!-- Decorative heart/cross icon -->
+        <div class="inline-flex items-center justify-center w-14 h-14 bg-terracotta/10 rounded-full text-terracotta mb-6">
+          <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 85 C50 85, 20 62, 20 40 C20 22, 34 10, 50 25 C66 10, 80 22, 80 40 C80 62, 50 85, 50 85 Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round" fill="none" />
+            <path d="M50 30 L50 65 M38 43 L62 43" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          </svg>
+        </div>
+        
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary max-w-3xl mx-auto leading-tight mb-6">
+          Providing Love, Dignity, and Care to Senior Clergy and Religious
+        </h2>
+        
+        <p class="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-16">
+          When religious and diocesan clergy reach their final chapters, many uncover a difficult reality: having never married or accumulated personal wealth due to vows of poverty and lifetimes of service, they can easily find themselves without a safety net or family caretakers. St. John Mary Vianney provides fully structured housing facilities, clinical healthcare programs, and continuous lay-parishioner companionship so that they can conclude their earthly journeys in safety, prayerful community, and peace.
+        </p>
+
+        <!-- Collage of 3 Images using custom styled layouts instead of empty grey boxes -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 max-w-5xl mx-auto mb-12">
+          
+          <!-- Collage Card 1 -->
+          <div class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-md transform hover:-translate-y-1 transition-all-300 border border-gray-100">
+            <div class="h-56 relative overflow-hidden bg-gradient-to-br from-tealLight via-tealPrimary to-tealDark flex items-center justify-center p-6 text-white text-center">
+              <!-- Visual background decoration to simulate active care -->
+              <div class="absolute inset-0 opacity-15">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0,50 C30,40, 70,60, 100,50 L100,100 L0,100 Z" fill="white" />
+                </svg>
+              </div>
+              <div class="relative z-10 flex flex-col items-center">
+                <span class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl mb-3">
+                  <i class="fas fa-hand-holding-heart text-terracotta"></i>
+                </span>
+                <span class="font-serif font-semibold text-lg">Lifelong Companion</span>
+                <p class="text-[11px] text-white/80 uppercase tracking-widest mt-1">Caring Relationships</p>
+              </div>
+            </div>
+            <div class="p-5 text-left text-sm text-charcoal/80 border-t border-gray-50 bg-white">
+              <p class="italic text-center">"Every priest in our residence is regularly visited by local volunteers, ensuring they of all people never feel lonely."</p>
+            </div>
+          </div>
+
+          <!-- Collage Card 2 -->
+          <div class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-md transform hover:-translate-y-1 transition-all-300 md:scale-105 border border-gray-100 z-10">
+            <div class="h-56 relative overflow-hidden bg-gradient-to-br from-slate-700 via-tealDark to-charcoal flex items-center justify-center p-6 text-white text-center">
+              <div class="absolute inset-0 opacity-15">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0,30 C40,60, 60,10, 100,40 L100,100 L0,100 Z" fill="white" />
+                </svg>
+              </div>
+              <div class="relative z-10 flex flex-col items-center">
+                <span class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl mb-3">
+                  <i class="fas fa-heart-pulse text-terracotta"></i>
+                </span>
+                <span class="font-serif font-semibold text-lg">Medical Aid</span>
+                <p class="text-[11px] text-white/80 uppercase tracking-widest mt-1">Dedicated Healthcare</p>
+              </div>
+            </div>
+            <div class="p-5 text-left text-sm text-charcoal/80 border-t border-gray-50 bg-white">
+              <p class="italic text-center">"From dedicated nursing assistance to coordinating prescriptions, health stays high priority so their days remain bright."</p>
+            </div>
+          </div>
+
+          <!-- Collage Card 3 -->
+          <div class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-md transform hover:-translate-y-1 transition-all-300 border border-gray-100">
+            <div class="h-56 relative overflow-hidden bg-gradient-to-br from-[#d0633c] via-terracotta to-[#a33c1d] flex items-center justify-center p-6 text-white text-center">
+              <div class="absolute inset-0 opacity-20">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0,60 C30,30, 80,70, 100,40 L100,100 L0,100 Z" fill="white" />
+                </svg>
+              </div>
+              <div class="relative z-10 flex flex-col items-center">
+                <span class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl mb-3">
+                  <i class="fas fa-sun text-white"></i>
+                </span>
+                <span class="font-serif font-semibold text-lg">Spiritual Peace</span>
+                <p class="text-[11px] text-white/90 uppercase tracking-widest mt-1">Reflective Sanctuaries</p>
+              </div>
+            </div>
+            <div class="p-5 text-left text-sm text-charcoal/80 border-t border-gray-50 bg-white">
+              <p class="italic text-center">"Fitted private chapels inside homes foster quiet hours of contemplation, giving back sacramental tranquility."</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-4">
+          <a href="#donate" class="inline-flex border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-white font-bold px-10 py-3.5 rounded-full transition-all duration-300 text-sm tracking-wider uppercase">
+            DONATE FOR LIFE
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. SCROLLING MARQUEE STRIP -->
+    <div class="bg-terracotta text-white overflow-hidden py-4 shadow-md flex items-center select-none">
+      <div class="animate-marquee flex items-center">
+        <span class="text-lg md:text-xl font-serif tracking-widest uppercase mx-4 flex items-center space-x-1">
+          <span>• Prayer</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Fellowship</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Support</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Health</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Care</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Dignity</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Love</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Community</span>
+        </span>
+        <span class="text-lg md:text-xl font-serif tracking-widest uppercase mx-4 flex items-center space-x-1">
+          <span>• Prayer</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Fellowship</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Support</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Health</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Care</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Dignity</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Love</span> <span class="mx-4 text-white/40">|</span> 
+          <span>Community</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- 7. OUR SERVICES / WHAT WE DO -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">WHAT WE DO</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Our Comprehensive Care Ecosystem</h2>
+          <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+            By combining comfortable group homes with a specialized, dedicated team, we fulfill every dimension of our retired priests' needs: material, social, and spiritual.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Card 1 -->
+          <div class="bg-sand rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all-300 border border-gray-100 group hover:-translate-y-1">
+            <div class="w-14 h-14 bg-tealPrimary text-white rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-terracotta transition-colors duration-300 shadow-md">
+              <i class="fas fa-users-rays"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tealPrimary mb-4">Fellowship Gatherings</h3>
+            <p class="text-charcoal/80 text-sm leading-relaxed">
+              We arrange regular social luncheons, family days, and group travel excursions. These events reconnect retired religious with parish life and parish families, offering them the laughter, appreciation, and human warmth they deeply deserve.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-sand rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all-300 border border-gray-100 group hover:-translate-y-1">
+            <div class="w-14 h-14 bg-tealPrimary text-white rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-terracotta transition-colors duration-300 shadow-md">
+              <i class="fas fa-heart-pulse"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tealPrimary mb-4">Medical & Health Support</h3>
+            <p class="text-charcoal/80 text-sm leading-relaxed">
+              Our volunteers manage physician schedules, provide safe transportation, coordinate rehabilitation, and cover co-pays for critical prescription medications. On-site registered practical nurses visit residential homes multiple times a week.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-sand rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all-300 border border-gray-100 group hover:-translate-y-1">
+            <div class="w-14 h-14 bg-tealPrimary text-white rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-terracotta transition-colors duration-300 shadow-md">
+              <i class="fas fa-church"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tealPrimary mb-4">Spiritual & Pastoral Care</h3>
+            <p class="text-charcoal/80 text-sm leading-relaxed">
+              We maintain beautifully ordained sanctuaries inside residences, enabling our priests to host and celebrate Holy Mass together. We honor their spiritual vocation, keeping them integral parts of direct church liturgies and online live chapels.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. UPCOMING EVENTS SECTION -->
+    <section id="events" class="py-16 md:py-24 bg-sand">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16">
+          <div class="space-y-2 max-w-xl">
+            <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">CALENDAR</span>
+            <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Upcoming Events</h2>
+          </div>
+          <a href="#contact" class="text-terracotta hover:text-terracottaDark font-bold text-sm tracking-wide mt-4 md:mt-0 flex items-center group">
+            Suggest an event layout <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Event 1 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div class="p-8">
+              <!-- Date Badge -->
+              <div class="inline-flex flex-col items-center justify-center bg-terracotta/10 text-terracotta rounded-2xl px-4 py-2 mb-6">
+                <span class="text-xs uppercase font-bold tracking-widest leading-none">Jun</span>
+                <span class="text-2xl font-bold font-serif leading-none mt-1">24</span>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-tealPrimary mb-3 group-hover:text-terracotta transition-colors">
+                Annual Feast Day & Liturgical Gala Dinner
+              </h3>
+              <p class="text-charcoal/70 text-sm leading-relaxed mb-6">
+                Join our elderly priests for are traditional Tridentine and Novus Ordo Mass, followed by a delicious fundraising banquet where dinner tickets fund winter fuel for their parish homes.
+              </p>
+            </div>
+            <div class="px-8 pb-8 pt-2 border-t border-gray-50 flex items-center justify-between">
+              <span class="text-xs text-slate-500 flex items-center">
+                <i class="far fa-clock mr-1.5 text-terracotta"></i> 4:00 PM - 8:30 PM
+              </span>
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+                Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div class="p-8">
+              <!-- Date Badge -->
+              <div class="inline-flex flex-col items-center justify-center bg-terracotta/10 text-terracotta rounded-2xl px-4 py-2 mb-6">
+                <span class="text-xs uppercase font-bold tracking-widest leading-none">Jul</span>
+                <span class="text-2xl font-bold font-serif leading-none mt-1">15</span>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-tealPrimary mb-3 group-hover:text-terracotta transition-colors">
+                Senior Clergy Annual Health & Fitness Drive
+              </h3>
+              <p class="text-charcoal/70 text-sm leading-relaxed mb-6">
+                Our collaborative voluntary health day! Licensed professionals, nursing practitioners, and physical therapists gather at our main cottage base for medical testing, consulting, and checkups.
+              </p>
+            </div>
+            <div class="px-8 pb-8 pt-2 border-t border-gray-50 flex items-center justify-between">
+              <span class="text-xs text-slate-500 flex items-center">
+                <i class="far fa-clock mr-1.5 text-terracotta"></i> 9:00 AM - 3:00 PM
+              </span>
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+                Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div class="p-8">
+              <!-- Date Badge -->
+              <div class="inline-flex flex-col items-center justify-center bg-terracotta/10 text-terracotta rounded-2xl px-4 py-2 mb-6">
+                <span class="text-xs uppercase font-bold tracking-widest leading-none">Aug</span>
+                <span class="text-2xl font-bold font-serif leading-none mt-1">08</span>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-tealPrimary mb-3 group-hover:text-terracotta transition-colors">
+                Parish Family Picnic & Sharing Circle
+              </h3>
+              <p class="text-charcoal/70 text-sm leading-relaxed mb-6">
+                An open-air picnic held in the garden groves of our Vianney Home, allowing parishioners and their children to spend relaxed moments listening to our elderly fathers relate inspiring tales of active mission work.
+              </p>
+            </div>
+            <div class="px-8 pb-8 pt-2 border-t border-gray-50 flex items-center justify-between">
+              <span class="text-xs text-slate-500 flex items-center">
+                <i class="far fa-clock mr-1.5 text-terracotta"></i> 12:00 PM - 4:00 PM
+              </span>
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+                Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. PHOTO GALLERY SECTION -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">MEMORIES</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Moments of Joy</h2>
+          <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+            A small glimpse into the everyday lives of our residents — surrounded by love, community, health, and dignity.
+          </p>
+        </div>
+
+        <!-- 3x2 Grid of Placeholders using themed background classes and overlay captions -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Box 1 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealPrimary shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-tr from-tealDark via-tealLight to-transparent opacity-80 z-10"></div>
+            <!-- Embedded themed vector content -->
+            <div class="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center p-6 text-white text-center">
+              <i class="fas fa-church text-4xl mb-4 text-[#f19273]/80 group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Spiritual Fellowship</span>
+              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Sacrament Hours</p>
+            </div>
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Sacramental Prayer</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Daily Mass held inside our Saint Vianney private home chapel.</p>
+            </div>
+          </div>
+
+          <!-- Box 2 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealDark shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#ce5028] via-[#e8714a] to-transparent opacity-75 z-10"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
+              <i class="fas fa-mug-hot text-4xl mb-4 text-[#f19273]/80 group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Morning Breakfast Discussions</span>
+              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Shared Meals</p>
+            </div>
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Laughter Over Tea</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Retired parish fathers swap missionary journals over fresh breakfast culinary preparations.</p>
+            </div>
+          </div>
+
+          <!-- Box 3 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slateWarm shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-tr from-tealLight via-slateWarm to-[#ebd2c1] opacity-60 z-10"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-tealDark text-center">
+              <i class="fas fa-seedling text-4xl mb-4 text-terracotta group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Organic Garden Maintenance</span>
+              <p class="text-xs text-tealPrimary/70 uppercase tracking-wider mt-1">Outdoor Wellness</p>
+            </div>
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Peace in the Gardens</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Gardening provides gentle cardiovascular exercise and refreshing organic herbal yields.</p>
+            </div>
+          </div>
+
+          <!-- Box 4 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-tr from-tealPrimary to-tealDark shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-tr from-tealDark via-slate-700 to-transparent opacity-85 z-10"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
+              <i class="fas fa-hand-holding-medical text-4xl mb-4 text-[#f19273]/85 group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Weekly Clinical Checkups</span>
+              <p class="text-xs text-white/75 uppercase tracking-wider mt-1">Medical Care</p>
+            </div>
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Professional Therapists</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Our community registered practical nurse conducts vitals scanning weekly.</p>
+            </div>
+          </div>
+
+          <!-- Box 5 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#d0633c] shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#ce5028] via-tealPrimary/30 to-tealDark opacity-95 z-10"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
+              <i class="fas fa-book-bible text-4xl mb-4 text-[#faf6f0]/85 group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Reading & Study Library</span>
+              <p class="text-xs text-white/80 uppercase tracking-wider mt-1">Theological Studies</p>
+            </div>
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Theological Study Hours</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Quiet areas stocked with scriptures, classical theology works, and historic journals.</p>
+            </div>
+          </div>
+
+          <!-- Box 6 -->
+          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealLight shadow-md cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-b from-tealPrimary via-tealDark to-transparent opacity-80 z-10"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
+              <i class="fas fa-cookie-bite text-4xl mb-4 text-[#ebd2c1] group-hover:scale-110 transition-transform duration-500"></i>
+              <span class="font-serif italic text-lg leading-snug">Community Baking Programs</span>
+              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Lay Engagement</p>
+            </div>
+            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
+              <h4 class="font-serif text-lg font-bold">Parish Lay Baking</h4>
+              <p class="text-xs text-center mt-2 px-4 text-white/90">Parishioners partner with resident clergy to bake artisan loafs for the needy.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. BLOG / NEWS SECTION -->
+    <section id="blog" class="py-16 md:py-24 bg-sand">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">NEWS & INSIGHTS</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Latest News & Updates</h2>
+          <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+            Follow stories of faith, resident diaries, organization milestones, and volunteer guides.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Post 1 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div>
+              <!-- Custom placeholder graphic header -->
+              <div class="h-48 relative overflow-hidden bg-gradient-to-br from-tealPrimary to-tealLight p-6 flex flex-col justify-between text-white">
+                <span class="bg-terracotta text-white font-bold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded">Feature Story</span>
+                <i class="fas fa-hands-holding text-3xl opacity-50 text-right"></i>
+              </div>
+              <div class="p-6">
+                <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">June 8, 2026</span>
+                <h3 class="font-serif font-bold text-lg text-tealPrimary mt-2 mb-3 group-hover:text-terracotta transition-colors">
+                  Restoring Dignity: A Day in the Life of Father Joseph
+                </h3>
+                <p class="text-charcoal/70 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                  Find out how St. Vianney group took Father Joseph, a retired missionary back from East Africa, from a drafty single room to a vibrant nursing-supported group home.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2">
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+                Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div>
+              <div class="h-48 relative overflow-hidden bg-gradient-to-br from-[#df876c] via-terracotta to-[#a13b1b] p-6 flex flex-col justify-between text-white">
+                <span class="bg-tealPrimary text-white font-bold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded">Organization</span>
+                <i class="fas fa-hospital-user text-3xl opacity-50 text-right"></i>
+              </div>
+              <div class="p-6">
+                <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">May 24, 2026</span>
+                <h3 class="font-serif font-bold text-lg text-tealPrimary mt-2 mb-3 group-hover:text-terracotta transition-colors">
+                  Our New Cottage Medical Wing Construction Begins
+                </h3>
+                <p class="text-charcoal/70 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                  With your generous donations, we have broken ground on a dedicated physio rehabilitation alcove in our central cottage house to support wheelchair exercises.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2">
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+                Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between group">
+            <div>
+              <div class="h-48 relative overflow-hidden bg-gradient-to-br from-tealDark via-tealPrimary to-[#bf5c38] p-6 flex flex-col justify-between text-white">
+                <span class="bg-terracotta text-white font-bold text-[10px] tracking-wider uppercase px-2.5 py-1 rounded">Community Grant</span>
+                <i class="fas fa-file-invoice-dollar text-3xl opacity-40 text-right"></i>
+              </div>
+              <div class="p-6">
+                <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">April 12, 2026</span>
+                <h3 class="font-serif font-bold text-lg text-tealPrimary mt-2 mb-3 group-hover:text-terracotta transition-colors">
+                  Parish Diocesan Grants Support Core Food Mission
+                </h3>
+                <p class="text-charcoal/70 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                  A wonderful matching grant from the Sacred Heart diocesan council ensures our pantry remains entirely loaded with healthy organic produce for the rest of 2026!
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2">
+              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+                Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 11. DONATE / GET INVOLVED SECTION -->
+    <section id="donate" class="py-20 md:py-24 bg-tealPrimary text-white relative overflow-hidden">
+      <!-- Background elegant circle designs -->
+      <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-tealLight/20"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tealDark/30"></div>
+      
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+        
+        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner text-accent font-bold">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl">Make a Difference Today</h2>
+          <p class="text-white/85 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            St. John Mary Vianney operates purely through the lay contributions of parishes and loving families. Your gift directly funds cozy bedding, on-call nursing practitioners, physical tools, and wholesome nutritional provisions.
+          </p>
+        </div>
+
+        <!-- Custom Quick-amount selection form simulation -->
+        <div class="max-w-lg mx-auto bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 space-y-4">
+          <p class="text-xs uppercase tracking-widest text-[#A8D4BE] font-bold">Select Donation Amount</p>
+          <div class="grid grid-cols-4 gap-3">
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="25">$25</button>
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="50">$50</button>
+            <button class="donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="100">$100</button>
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="custom">Other</button>
+          </div>
+          <div class="flex items-center space-x-2 pt-2">
+            <span class="text-xs text-white/60 text-center w-full block">Each dollar represents warm recognition for those who administered sacraments all their lives.</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+          <button onclick="handleInternalDonateSubmit()" class="w-full sm:w-auto bg-accent hover:bg-accentDark text-tealDark font-bold px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 uppercase tracking-wider text-sm">
+            DONATE NOW
+          </button>
+          <a href="#contact" class="w-full sm:w-auto border-2 border-white/80 hover:bg-white hover:text-tealPrimary text-white font-bold px-10 py-3.5 rounded-full transition-all duration-300 uppercase tracking-wider text-sm text-center">
+            VOLUNTEER WITH US
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 12. CONTACT SECTION -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Contact Left: Details & Placeholders -->
+          <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-2">
+              <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">CONTACT US</span>
+              <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Get in Touch</h2>
+              <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+                Have questions about our resident facilities, volunteer drives, or nominating a retired priest for admission? Write to us or visit our central lay coordination office.
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Address -->
+              <div class="flex items-start space-x-4">
+                <div class="w-11 h-11 bg-tealPrimary/5 text-tealPrimary rounded-xl flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fas fa-location-dot"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-bold text-tealPrimary text-sm">Administrative Center Address</h4>
+                  <p class="text-sm text-charcoal/70 leading-relaxed">
+                    St. Vianney Lay Apostolic House<br>
+                    455 Cathedral Parkway, Suite 104<br>
+                    New York, NY 10025
+                  </p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start space-x-4">
+                <div class="w-11 h-11 bg-tealPrimary/5 text-tealPrimary rounded-xl flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-bold text-tealPrimary text-sm">Support Email Addresses</h4>
+                  <p class="text-sm text-charcoal/70">
+                    <a href="mailto:care@vianneyclergy.org" class="hover:text-terracotta hover:underline">care@vianneyclergy.org</a><br>
+                    <a href="mailto:volunteer@vianneyclergy.org" class="hover:text-terracotta hover:underline">volunteer@vianneyclergy.org</a>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start space-x-4">
+                <div class="w-11 h-11 bg-tealPrimary/5 text-tealPrimary rounded-xl flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fas fa-phone-flip"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-bold text-tealPrimary text-sm">Main Telephone Enquiries</h4>
+                  <p class="text-sm text-charcoal/70 font-semibold text-tealPrimary">
+                    +234 7068534169 <span class="font-normal text-xs text-slate-400 font-sans ml-1">(Mon-Fri: 9am - 4pm)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Parish Outreach Notice -->
+            <div class="bg-sand rounded-2xl p-6 border border-tealPrimary/5">
+              <h4 class="font-serif font-bold text-tealPrimary mb-2">Parish Bulletin Materials</h4>
+              <p class="text-xs text-charcoal/80 leading-relaxed">
+                Want to help promote our charity in your parish's weekly bulletin? Fill our contact form selecting "Bulletin Kit", and we will mail you ready-to-print flyers and bulletin blurbs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Contact Right: Form -->
+          <div class="lg:col-span-7 bg-sand rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-xl relative">
+            <h3 class="font-serif font-bold text-xl md:text-2xl text-tealPrimary mb-6">Send Us a Secured Message</h3>
+            
+            <!-- JavaScript-controlled success notification hidden by default -->
+            <div id="contact-success" class="hidden mb-6 p-4 bg-tealPrimary/10 border border-tealPrimary/25 text-tealPrimary rounded-2xl flex items-start space-x-3 transition-all duration-300">
+              <i class="fas fa-circle-check text-xl mt-0.5 text-terracotta"></i>
+              <div>
+                <h5 class="font-bold text-sm">Thank You For Reaching Out!</h5>
+                <p class="text-xs text-slate-600 mt-1">Our voluntary ministry coordinator will read your request and respond via email within 24-48 business hours.</p>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form id="contact-form" onsubmit="handleFormSubmission(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-1.5">
+                  <label for="contact-name" class="block text-xs font-semibold uppercase tracking-wider text-tealPrimary">Your Name *</label>
+                  <input type="text" id="contact-name" name="name" required class="w-full bg-white border border-gray-200 focus:border-terracotta focus:ring-1 focus:ring-terracotta rounded-xl px-4 py-3 text-sm focus:outline-none transition-all" placeholder="John Miller">
+                </div>
+                <div class="space-y-1.5">
+                  <label for="contact-email" class="block text-xs font-semibold uppercase tracking-wider text-tealPrimary">Email Address *</label>
+                  <input type="email" id="contact-email" name="email" required class="w-full bg-white border border-gray-200 focus:border-terracotta focus:ring-1 focus:ring-terracotta rounded-xl px-4 py-3 text-sm focus:outline-none transition-all" placeholder="name@example.com">
+                </div>
+              </div>
+              
+              <div class="space-y-1.5">
+                <label for="contact-subject" class="block text-xs font-semibold uppercase tracking-wider text-tealPrimary">Subject Inquiry Type</label>
+                <select id="contact-subject" name="subject" class="w-full bg-white border border-gray-200 focus:border-terracotta focus:ring-1 focus:ring-terracotta rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-charcoal/80">
+                  <option value="general">General Support Enquiry</option>
+                  <option value="nomination">Priest Admission Nomination</option>
+                  <option value="governance">Volunteer/Lay Engagement</option>
+                  <option value="bulletin">Parish Bulletin Promotion Kit</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-message" class="block text-xs font-semibold uppercase tracking-wider text-tealPrimary">Secured Message *</label>
+                <textarea id="contact-message" name="message" required rows="5" class="w-full bg-white border border-gray-200 focus:border-terracotta focus:ring-1 focus:ring-terracotta rounded-xl px-4 py-3 text-sm focus:outline-none transition-all" placeholder="I would love to help coordinates a bulletin drive at my parish, or ask about retirement placement..."></textarea>
+              </div>
+
+              <div class="flex items-center space-x-3 py-1">
+                <input type="checkbox" id="bulletin-opt-in" class="rounded border-gray-300 text-terracotta focus:ring-terracotta cursor-pointer w-4.5 h-4.5">
+                <label for="bulletin-opt-in" class="text-xs text-charcoal/80 select-none cursor-pointer">I would like to receive the St. John Mary Vianney quarterly e-newsletter.</label>
+              </div>
+
+              <button type="submit" class="w-full bg-[#1b4352] hover:bg-tealPrimary text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 tracking-wider">
+                <span>SUBMIT INQUIRY</span> 
+                <i class="fas fa-paper-plane text-xs"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 13. FOOTER -->
+    <footer class="bg-tealDark text-white mt-auto pt-16 pb-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-white/10">
+          
+          <!-- Footer Description & Logo -->
+          <div class="md:col-span-5 space-y-6">
+            <a href="#home" class="flex items-center space-x-1.5 group">
+              <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
+              <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-white group-hover:text-accent transition-colors">
+                ST. JOHN MARY VIANNEY
+              </span>
+            </a>
+            
+            <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+              An independent Roman Catholic lay apostolate. We ensure retired, frail priests are surrounded by comfortable homes, qualified nurses, prayerful community shelter and family companionship.
+            </p>
+
+            <!-- Social Icons -->
+            <div class="flex items-center space-x-4 pt-2">
+              <a href="#contact" aria-label="Visit Facebook page" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-tealDark transition-all-300 shadow">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#contact" aria-label="Visit Twitter/X profile" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-tealDark transition-all-300 shadow">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#contact" aria-label="Visit Instagram feed" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-tealDark transition-all-300 shadow">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#contact" aria-label="Visit YouTube channel" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-tealDark transition-all-300 shadow">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Links -->
+          <div class="md:col-span-3 space-y-4">
+            <h4 class="font-serif font-semibold text-white tracking-wider text-base">Quick Navigation</h4>
+            <ul class="space-y-2 text-sm text-white/70">
+              <li><a href="#home" class="hover:text-accent hover:underline transition-colors block py-0.5">Home</a></li>
+              <li><a href="#about" class="hover:text-accent hover:underline transition-colors block py-0.5">About Our Work</a></li>
+              <li><a href="#events" class="hover:text-accent hover:underline transition-colors block py-0.5">Upcoming Events</a></li>
+              <li><a href="#gallery" class="hover:text-accent hover:underline transition-colors block py-0.5">Joyful Moments Gallery</a></li>
+              <li><a href="#blog" class="hover:text-accent hover:underline transition-colors block py-0.5">Latest Press & News</a></li>
+              <li><a href="#contact" class="hover:text-accent hover:underline transition-colors block py-0.5">Administrative Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Caregiver Office Placement and Bulletin Hours -->
+          <div class="md:col-span-4 space-y-4">
+            <h4 class="font-serif font-semibold text-white tracking-wider text-base">Vianney Cottage Base</h4>
+            <p class="text-sm text-white/70 leading-relaxed">
+              Located in serene forest groves in Dutchess County, upstate New York. Serving our regional bishops and chapels.
+            </p>
+            <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+              <span class="text-xs uppercase font-bold text-accent tracking-wider block mb-1">Tax-Exempt Standard</span>
+              <p class="text-[11px] text-white/60 leading-snug">
+                All donations qualify for federal 501(c)(3) income reductions. Receipts generated in early business quarters.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/50 space-y-4 md:space-y-0">
+          <span>© 2026 St. John Mary Vianney Group. All Rights Reserved.</span>
+          <div class="flex space-x-6">
+            <a href="#contact" class="hover:underline hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#contact" class="hover:underline hover:text-white transition-colors">Terms of Use</a>
+            <a href="#contact" class="hover:underline hover:text-white transition-colors">Tax Filings & Reporting</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-accent hover:bg-accentDark text-tealDark w-12 h-12 rounded-full shadow-2xl flex items-center justify-center text-lg opacity-0 pointer-events-none transition-all duration-300 z-50 transform translate-y-4 hover:-translate-y-0.5" aria-label="Scroll back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 14. INTERACTIVE PAYMENT MODAL -->
+    <div id="donation-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <!-- Backdrop with premium glassmorphism blur -->
+      <div class="fixed inset-0 bg-tealDark/80 backdrop-blur-sm transition-opacity" onclick="closeDonationModal()"></div>
+
+      <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-100 duration-300 transform scale-95 opacity-0 inline-block align-middle" id="donation-modal-panel">
+          
+          <!-- Modal Header -->
+          <div class="bg-gradient-to-r from-tealDark to-tealPrimary px-6 py-4 flex items-center justify-between text-white rounded-t-3xl">
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h3a1 1 0 100-2H9z" clip-rule="evenodd"></path></svg>
+              <h3 class="font-serif font-bold text-lg md:text-xl text-white tracking-wide" id="modal-title">Secure Offering</h3>
+            </div>
+            <button type="button" class="text-white/80 hover:text-white hover:bg-white/10 rounded-full p-1.5 transition-colors focus:outline-none" onclick="closeDonationModal()">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+
+          <!-- Step 1 Layout: Custom Amount Panel (only shown if amount is not set or if 'custom' is selected) -->
+          <div id="modal-step-amount" class="p-6 space-y-4">
+            <h4 class="font-serif font-bold text-tealPrimary text-xl text-center">Support Our Elderly Clergy</h4>
+            <p class="text-xs text-charcoal/70 text-center leading-relaxed">
+              Every donation provides safe shelter, daily nutrition, and medical attention for elderly priests in their retirement.
+            </p>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-tealPrimary text-2xl font-serif">$</span>
+              <input type="number" id="custom-donation-input" class="block w-full py-4 pl-10 pr-4 text-3xl font-serif text-tealPrimary border-2 border-slateWarm rounded-2xl focus:border-accent focus:ring focus:ring-accent/20 focus:outline-none transition-all placeholder:text-slateWarm" placeholder="100" min="5">
+            </div>
+            <div class="grid grid-cols-4 gap-2 pt-2">
+              <button onclick="setModalAmount(25)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$25</button>
+              <button onclick="setModalAmount(50)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$50</button>
+              <button onclick="setModalAmount(100)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-slateWarm font-mono">$100</button>
+              <button onclick="setModalAmount(250)" class="border border-slateWarm text-sm font-bold text-tealPrimary py-2 rounded-xl hover:border-accent hover:bg-accent/10 transition-colors bg-sand font-mono">$250</button>
+            </div>
+            <button onclick="proceedToPayment()" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all tracking-wider text-sm mt-4 uppercase">
+              Proceed to Payment
+            </button>
+          </div>
+
+          <!-- Step 2 Layout: Payment Information & Card Details -->
+          <div id="modal-step-payment" class="hidden p-6 space-y-4">
+            <div class="bg-sand p-3.5 rounded-2xl flex justify-between items-center border border-tealPrimary/5">
+              <div>
+                <span class="text-xs text-[#8c969b] block font-semibold uppercase tracking-wider">Offer Amount</span>
+                <span class="text-2xl font-serif font-bold text-tealPrimary" id="payment-display-amount">$100.00</span>
+              </div>
+              <button onclick="showStepAmount()" class="text-xs text-tealPrimary hover:text-accent font-bold underline transition-colors">
+                Change Amount
+              </button>
+            </div>
+
+            <form id="secure-payment-form" onsubmit="executeOfferedTransaction(event)" class="space-y-4">
+              <!-- Payment Tabs -->
+              <div class="grid grid-cols-3 gap-2 bg-sand p-1 rounded-xl text-xs font-semibold">
+                <button type="button" id="btn-pay-card" class="bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5" onclick="selectPaymentMethod('card')">
+                  <i class="fas fa-credit-card mr-1"></i> Card
+                </button>
+                <button type="button" id="btn-pay-paypal" class="text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors" onclick="selectPaymentMethod('paypal')">
+                  <i class="fab fa-paypal mr-1"></i> PayPal
+                </button>
+                <button type="button" id="btn-pay-gpay" class="text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors" onclick="selectPaymentMethod('gpay')">
+                  <i class="fab fa-google-pay text-base"></i> Pay
+                </button>
+              </div>
+
+              <!-- Credit Card Fields -->
+              <div id="payment-card-fields" class="space-y-3">
+                <div class="relative">
+                  <label for="card-num" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Card Number</label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fas fa-credit-card"></i></span>
+                    <input type="text" id="card-num" class="block w-full py-2.5 pl-9 pr-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="4111 2222 3333 4444">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="card-expiry" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Expiry Date</label>
+                    <input type="text" id="card-expiry" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="MM/YY">
+                  </div>
+                  <div>
+                    <label for="card-cvv" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">CVC / CVV</label>
+                    <input type="password" id="card-cvv" maxlength="4" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="•••">
+                  </div>
+                </div>
+
+                <div>
+                  <label for="card-holder" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Cardholder Name</label>
+                  <input type="text" id="card-holder" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" placeholder="Rev. Father John Doe">
+                </div>
+              </div>
+
+              <div id="payment-non-card-fields" class="hidden text-center py-6 bg-sand rounded-2xl border border-dashed border-gray-200">
+                <i class="fas fa-fingerprint text-accent text-3xl mb-2 block"></i>
+                <span class="text-xs text-charcoal/80" id="alternative-payment-desc">Sign in with Face ID or Google Account to express offerings instantly.</span>
+              </div>
+
+              <div class="flex items-center space-x-2 pt-2">
+                <input type="checkbox" id="modal-tax-receipt" checked class="rounded border-gray-300 text-accent focus:ring-accent h-4 w-4">
+                <label for="modal-tax-receipt" class="text-xs text-charcoal/70">Send me a tax-deductible offering receipt email</label>
+              </div>
+
+              <!-- Submit offerings button -->
+              <button type="submit" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all tracking-wider text-sm uppercase mt-4">
+                Complete Safe Offering
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 3 Layout: Processing state with circular rotating loader -->
+          <div id="modal-step-processing" class="hidden p-10 text-center space-y-6">
+            <div class="relative w-20 h-20 mx-auto">
+              <!-- Animated Spinner -->
+              <svg class="animate-spin h-20 w-20 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <h4 class="font-serif font-bold text-tealPrimary text-xl">Connecting Secure Bank...</h4>
+              <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                Validating card networks and encrypting transaction coordinates. Please do not close this modal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 Layout: Offering Completed Successfully -->
+          <div id="modal-step-success" class="hidden p-8 text-center space-y-6">
+            <div class="w-16 h-16 bg-[#eaf7f1] text-[#2c7a52] rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner border border-[#c6ecd7]">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-serif font-bold text-[#1e5436] text-2xl">Blessings for Your Gift!</h3>
+              <p class="text-xs text-charcoal/70 leading-relaxed">
+                Your transaction processed safely. A digital offering receipt has been dispatched to your email address.
+              </p>
+            </div>
+
+            <!-- Receipt Breakdown Cards -->
+            <div class="bg-sand p-4 rounded-3xl border border-gray-100 text-left space-y-3.5 text-xs text-charcoal/80">
+              <div class="flex justify-between border-b border-gray-200/50 pb-2">
+                <span class="text-gray-400 font-medium">Receipt ID</span>
+                <span class="font-mono font-bold font-semibold" id="receipt-id">#VNY-R9204A</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-200/50 pb-2">
+                <span class="text-gray-400 font-medium">Date & Time</span>
+                <span class="font-bold font-mono font-semibold" id="receipt-date">June 10, 2026 13:46 UTC</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-200/50 pb-2">
+                <span class="text-gray-400 font-medium">Destination</span>
+                <span class="font-bold font-semibold text-tealPrimary">St. John Mary Vianney Support Fund</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400 font-medium font-semibold">Amount Received</span>
+                <span class="text-xl font-serif font-bold text-tealPrimary" id="receipt-amount">$100.00</span>
+              </div>
+            </div>
+
+            <button onclick="closeDonationModal()" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3 px-6 rounded-full shadow transition-all tracking-wider text-sm uppercase">
+              Return to Website
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HIDDEN REACT CONTAINER for framework template safety checks -->
+    <div id="root" style="display: none;" class="hidden pointer-events-none"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- VANILLA JAVASCRIPT FOR LANDING INTERFACES -->
+    <script>
+      // Sticky Navigation and Transition Control on Scroll
+      window.addEventListener('scroll', function() {
+        const header = document.getElementById('main-navigation');
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        if (window.scrollY > 40) {
+          header.classList.add('shadow-md', 'bg-white', 'py-3');
+          header.classList.remove('py-4', 'bg-white/95');
+          
+          // Back to top floating button display
+          backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+          backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        } else {
+          header.classList.remove('shadow-md', 'py-3');
+          header.classList.add('py-4', 'bg-white/95');
+          
+          backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+          backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        }
+      });
+
+      // Navigation scroll tracking active section (Visual Cue highlight)
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= (sectionTop - 120)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('text-accent', 'font-semibold');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-accent', 'font-semibold');
+          }
+        });
+      });
+
+      // Mobile Hamburger Navigation Toggling Handler
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+
+      mobileBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+          hamburgerIcon.className = 'fas fa-bars text-2xl';
+        } else {
+          hamburgerIcon.className = 'fas fa-xmark text-2xl';
+        }
+      });
+
+      // Close mobile menu when clicking a link or clicking outdoors
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.className = 'fas fa-bars text-2xl';
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (mobileBtn && !mobileBtn.contains(e.target) && mobileMenu && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.className = 'fas fa-bars text-2xl';
+        }
+      });
+
+      // Quick Donation interactive button selection logic
+      let selectedDonationAmount = '100'; // Default preset value on load
+      const amountBtns = document.querySelectorAll('.donation-amt-btn');
+      
+      amountBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          amountBtns.forEach(b => {
+            b.className = 'donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all';
+          });
+          btn.className = 'donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all';
+          
+          const amount = btn.getAttribute('data-amount');
+          selectedDonationAmount = amount;
+
+          if (amount === 'custom') {
+            // When user clicks others, trigger custom entry pop-up directly
+            openDonationModal('custom');
+          }
+        });
+      });
+
+      // Modal State Properties
+      let currentOfferAmount = 100;
+      let activePaymentMethod = 'card';
+
+      function openDonationModal(amount) {
+        const modal = document.getElementById('donation-modal');
+        const panel = document.getElementById('donation-modal-panel');
+        
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          panel.classList.remove('scale-95', 'opacity-0');
+          panel.classList.add('scale-100', 'opacity-100');
+        }, 30);
+
+        if (amount === 'custom' || !amount) {
+          showStepAmount();
+        } else {
+          setPaymentDisplay(amount);
+        }
+      }
+
+      function closeDonationModal() {
+        const modal = document.getElementById('donation-modal');
+        const panel = document.getElementById('donation-modal-panel');
+        
+        panel.classList.remove('scale-100', 'opacity-100');
+        panel.classList.add('scale-95', 'opacity-0');
+        
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          // Reset steps on closure
+          document.getElementById('modal-step-amount').classList.remove('hidden');
+          document.getElementById('modal-step-payment').classList.add('hidden');
+          document.getElementById('modal-step-processing').classList.add('hidden');
+          document.getElementById('modal-step-success').classList.add('hidden');
+        }, 150);
+      }
+
+      function showStepAmount() {
+        document.getElementById('modal-step-amount').classList.remove('hidden');
+        document.getElementById('modal-step-payment').classList.add('hidden');
+        document.getElementById('modal-step-processing').classList.add('hidden');
+        document.getElementById('modal-step-success').classList.add('hidden');
+        
+        const input = document.getElementById('custom-donation-input');
+        if (input) {
+          input.value = currentOfferAmount || '100';
+          input.focus();
+        }
+      }
+
+      function setModalAmount(amt) {
+        const input = document.getElementById('custom-donation-input');
+        if (input) {
+          input.value = amt;
+        }
+      }
+
+      function proceedToPayment() {
+        const input = document.getElementById('custom-donation-input');
+        let amount = parseFloat(input.value);
+        if (isNaN(amount) || amount <= 0) {
+          amount = 100;
+        }
+        setPaymentDisplay(amount);
+      }
+
+      function setPaymentDisplay(amount) {
+        currentOfferAmount = amount;
+        document.getElementById('payment-display-amount').innerText = '$' + parseFloat(amount).toFixed(2);
+        
+        document.getElementById('modal-step-amount').classList.add('hidden');
+        document.getElementById('modal-step-payment').classList.remove('hidden');
+        document.getElementById('modal-step-processing').classList.add('hidden');
+        document.getElementById('modal-step-success').classList.add('hidden');
+      }
+
+      function selectPaymentMethod(type) {
+        activePaymentMethod = type;
+        const btnCard = document.getElementById('btn-pay-card');
+        const btnPaypal = document.getElementById('btn-pay-paypal');
+        const btnGpay = document.getElementById('btn-pay-gpay');
+        
+        // Reset classes
+        btnCard.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
+        btnPaypal.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
+        btnGpay.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
+        
+        const cardFields = document.getElementById('payment-card-fields');
+        const nonCardFields = document.getElementById('payment-non-card-fields');
+        
+        if (type === 'card') {
+          btnCard.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
+          cardFields.classList.remove('hidden');
+          nonCardFields.classList.add('hidden');
+          document.getElementById('card-num').setAttribute('required', 'true');
+          document.getElementById('card-expiry').setAttribute('required', 'true');
+          document.getElementById('card-cvv').setAttribute('required', 'true');
+          document.getElementById('card-holder').setAttribute('required', 'true');
+        } else {
+          cardFields.classList.add('hidden');
+          nonCardFields.classList.remove('hidden');
+          document.getElementById('card-num').removeAttribute('required');
+          document.getElementById('card-expiry').removeAttribute('required');
+          document.getElementById('card-cvv').removeAttribute('required');
+          document.getElementById('card-holder').removeAttribute('required');
+          
+          if (type === 'paypal') {
+            btnPaypal.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
+            document.getElementById('alternative-payment-desc').innerText = "Authorize security connection to PayPal wallet system on popup window.";
+          } else {
+            btnGpay.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
+            document.getElementById('alternative-payment-desc').innerText = "Initiating Google / Apple One-Touch secure biometrics authorization...";
+          }
+        }
+      }
+
+      function executeOfferedTransaction(event) {
+        event.preventDefault();
+        
+        // Go to processing loading screen
+        document.getElementById('modal-step-payment').classList.add('hidden');
+        document.getElementById('modal-step-processing').classList.remove('hidden');
+        
+        // Simulate real transaction processing pipeline
+        setTimeout(() => {
+          // Generate a beautiful custom offering receipt details
+          const receiptId = '#VNY-R' + Math.floor(10000 + Math.random() * 90000) + 'X';
+          const receiptDate = new Date().toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + ' UTC';
+          
+          document.getElementById('receipt-id').innerText = receiptId;
+          document.getElementById('receipt-date').innerText = receiptDate;
+          document.getElementById('receipt-amount').innerText = '$' + parseFloat(currentOfferAmount).toFixed(2);
+          
+          // Show payment completed panel
+          document.getElementById('modal-step-processing').classList.add('hidden');
+          document.getElementById('modal-step-success').classList.remove('hidden');
+          
+          // Clear payment details input forms
+          document.getElementById('secure-payment-form').reset();
+        }, 2200);
+      }
+
+      // Simulated internal donation button callback
+      function handleInternalDonateSubmit() {
+        if (selectedDonationAmount === 'custom') {
+          openDonationModal('custom');
+        } else {
+          openDonationModal(selectedDonationAmount);
+        }
+      }
+
+      // Smooth trigger scroll to top
+      document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Secured Contact Form Handler Function
+      function handleFormSubmission(event) {
+        event.preventDefault();
+        
+        const form = document.getElementById('contact-form');
+        const successNotice = document.getElementById('contact-success');
+        
+        // Hide form inputs visually, show gorgeous success
+        form.classList.add('opacity-40', 'pointer-events-none');
+        successNotice.classList.remove('hidden');
+        successNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // reset form input values
+        form.reset();
+        
+        // re-activate form input controls after 10 seconds
+        setTimeout(() => {
+          form.classList.remove('opacity-40', 'pointer-events-none');
+          successNotice.classList.add('hidden');
+        }, 12000);
+      }
+    </script>
+  </body>
+</html>

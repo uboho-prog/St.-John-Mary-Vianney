@@ -1,0 +1,6 @@
+{
+  "name": "St. John Mary Vianney",
+  "description": "A website for the Catholic charity group caring for elderly priests and religious without families.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
