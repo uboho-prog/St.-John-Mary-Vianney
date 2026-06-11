@@ -44,6 +44,18 @@
     </script>
     
     <style>
+      /* Reuse exact theme colors from Tailwind config as CSS variables for precise reuse */
+      :root {
+        --color-tealPrimary: #1a4a5c;
+        --color-tealDark: #123441;
+        --color-tealLight: #286a83;
+        --color-terracotta: #e8714a;
+        --color-terracottaLight: #f19273;
+        --color-sand: #faf6f0;
+        --color-accent: #A8D4BE; /* mint green */
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+      }
       html {
         scroll-behavior: smooth;
       }
@@ -101,6 +113,94 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #A8D4BE;
       }
+
+      /* Blog detail view overrides to match main site theme */
+      #post-detail-view {
+        background-color: var(--color-sand);
+        font-family: var(--font-sans);
+        color: var(--color-charcoal, #2c3539);
+      }
+
+      /* Hero overlay should use the site's dark teal tint (matches navbar/cards) */
+      #post-hero > .hero-overlay {
+        background-color: rgba(18,52,65,0.55); /* using exact --color-tealDark */
+      }
+
+      /* Category badge: terracotta background and matching typography */
+      #post-category .inline-block {
+        background-color: var(--color-terracotta) !important;
+        color: white !important;
+      }
+
+      /* Post meta (date, author) should use mint green accent */
+      #post-meta-left, #post-meta-left span { color: var(--color-accent) !important; }
+
+      /* Back button hover uses mint green */
+      #post-back-btn:hover {
+        background-color: var(--color-accent) !important;
+        color: #ffffff !important;
+        border-color: rgba(0,0,0,0.03) !important;
+      }
+
+      /* Related posts heading underline in dark teal */
+      #related-posts h3 {
+        display: inline-block;
+        padding-bottom: 8px;
+        border-bottom: 4px solid var(--color-tealDark);
+      }
+
+      /* Make related cards match main blog/news card styling (shadow, radius, hover lift) */
+      #related-list .rounded-2xl {
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease;
+      }
+      #related-list .rounded-2xl:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(28, 47, 52, 0.08);
+      }
+
+      /* Read more arrow links color - terracotta */
+      #related-list a, #related-list a .fa-arrow-right {
+        color: var(--color-terracotta) !important;
+      }
+
+      /* Ensure headings use the serif font like the main site */
+      #post-detail-view h1, #post-detail-view h2, #post-detail-view h3, #post-detail-view h4 {
+        font-family: var(--font-serif) !important;
+      }
+
+      /* Event detail view styling */
+      :root { --event-mint: #6BAF92; --event-heading: #2C4A3E; }
+
+      #event-detail-view {
+        background-color: #FAFAF6; /* page background */
+        color: var(--event-heading);
+        font-family: var(--font-sans);
+        border-top: 4px solid var(--event-mint);
+      }
+
+      #event-hero > .event-hero-overlay {
+        background-color: rgba(44,74,62,0.60);
+      }
+
+      /* Event meta mint green */
+      .event-meta { color: var(--event-mint); }
+
+      /* Register button terracotta */
+      .event-register-btn { background-color: var(--color-terracotta); color: white; }
+
+      /* Event description container */
+      #event-description { background: #FAFAF6; color: #2C4A3E; line-height: 1.9; }
+
+      /* Form inputs */
+      #event-register-form input, #event-register-form textarea, #event-register-form select {
+        border: 1px solid #E8E8DE; border-radius: 8px; padding: 12px;
+      }
+      #event-register-form input:focus, #event-register-form textarea:focus {
+        outline: none; border-color: var(--event-mint); box-shadow: 0 0 0 3px rgba(107,175,146,0.08);
+      }
+
+      /* Register heading underline mint */
+      #event-register-heading { display: inline-block; border-bottom: 4px solid var(--event-mint); }
     </style>
   </head>
   <body class="font-sans bg-sand text-charcoal flex flex-col min-h-screen">
@@ -114,7 +214,7 @@
           <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
           <div class="flex flex-col">
             <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-tealPrimary group-hover:text-accent transition-colors duration-300">
-              ST. JOHN MARY VIANNEY
+              ST. JOHN MARY VIANNEY GROUP
             </span>
             <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-medium scale-y-95 origin-left">
               Elderly Clergy Support Group
@@ -171,6 +271,8 @@
         </a>
       </div>
     </header>
+
+    <main id="site-main">
 
     <!-- 3. HERO SECTION -->
     <section id="home" class="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-sand via-white to-slateWarm">
@@ -338,7 +440,7 @@
           <!-- Logo 1: Diocese description -->
           <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-church text-xl text-tealPrimary"></i>
-            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Mercy</span>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Lagos</span>
           </div>
           <!-- Logo 2 -->
           <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
@@ -381,7 +483,7 @@
         </h2>
         
         <p class="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-16">
-          When religious and diocesan clergy reach their final chapters, many uncover a difficult reality: having never married or accumulated personal wealth due to vows of poverty and lifetimes of service, they can easily find themselves without a safety net or family caretakers. St. John Mary Vianney provides fully structured housing facilities, clinical healthcare programs, and continuous lay-parishioner companionship so that they can conclude their earthly journeys in safety, prayerful community, and peace.
+          When religious and diocesan clergy reach their final chapters, many uncover a difficult reality: having never married or accumulated personal wealth due to vows of poverty and lifetimes of service, they can easily find themselves without a safety net or family caretakers. St. John Mary Vianney Group provides fully structured housing facilities, clinical healthcare programs, and continuous lay-parishioner companionship so that they can conclude their earthly journeys in safety, prayerful community, and peace.
         </p>
 
         <!-- Collage of 3 Images using custom styled layouts instead of empty grey boxes -->
@@ -550,7 +652,7 @@
             <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Upcoming Events</h2>
           </div>
           <a href="#contact" class="text-terracotta hover:text-terracottaDark font-bold text-sm tracking-wide mt-4 md:mt-0 flex items-center group">
-            Suggest an event layout <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            Suggest an event <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
@@ -575,9 +677,9 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 4:00 PM - 8:30 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
-                Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
-              </a>
+                <a href="#event-1" data-event-id="event-1" onclick="openEvent('event-1')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+                  Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
+                </a>
             </div>
           </div>
 
@@ -600,7 +702,7 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 9:00 AM - 3:00 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+              <a href="#event-2" data-event-id="event-2" onclick="openEvent('event-2')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
                 Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
               </a>
             </div>
@@ -625,7 +727,7 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 12:00 PM - 4:00 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+              <a href="#event-3" data-event-id="event-3" onclick="openEvent('event-3')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
                 Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
               </a>
             </div>
@@ -644,7 +746,7 @@
           <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">MEMORIES</span>
           <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Moments of Joy</h2>
           <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
-            A small glimpse into the everyday lives of our residents — surrounded by love, community, health, and dignity.
+            A small glimpse into the everyday lives of our elders — surrounded by love, community, health, and dignity.
           </p>
         </div>
 
@@ -781,7 +883,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-1" data-post-id="blog-post-1" onclick="openPost('blog-post-1')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -805,7 +907,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-2" data-post-id="blog-post-2" onclick="openPost('blog-post-2')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -829,7 +931,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-3" data-post-id="blog-post-3" onclick="openPost('blog-post-3')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -1014,6 +1116,8 @@
       </div>
     </section>
 
+    </main>
+
     <!-- 13. FOOTER -->
     <footer class="bg-tealDark text-white mt-auto pt-16 pb-8 border-t border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1025,7 +1129,7 @@
             <a href="#home" class="flex items-center space-x-1.5 group">
               <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
               <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-white group-hover:text-accent transition-colors">
-                ST. JOHN MARY VIANNEY
+                ST. JOHN MARY VIANNEY GROUP
               </span>
             </a>
             
@@ -1070,9 +1174,9 @@
               Located in serene forest groves in Dutchess County, upstate New York. Serving our regional bishops and chapels.
             </p>
             <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-              <span class="text-xs uppercase font-bold text-accent tracking-wider block mb-1">Tax-Exempt Standard</span>
+              <span class="text-xs uppercase font-bold text-accent tracking-wider block mb-1">Disclaimer</span>
               <p class="text-[11px] text-white/60 leading-snug">
-                All donations qualify for federal 501(c)(3) income reductions. Receipts generated in early business quarters.
+                St. John Mary Vianney is a voluntary lay group. Donations are used solely for the care of elderly clergy and religious. We are not a registered financial institution and cannot guarantee tax benefits.
               </p>
             </div>
           </div>
@@ -1266,6 +1370,120 @@
 
     <!-- HIDDEN REACT CONTAINER for framework template safety checks -->
     <div id="root" style="display: none;" class="hidden pointer-events-none"></div>
+
+    <!-- BLOG POST DETAIL VIEW (hidden by default) -->
+    <div id="post-detail-view" class="hidden fixed inset-0 z-20 overflow-auto bg-sand">
+      <div class="max-w-5xl mx-auto">
+        <div class="pt-6 px-4">
+          <button id="post-back-btn" onclick="closePost()" class="inline-flex items-center space-x-2 bg-white border border-gray-100 shadow rounded-full px-4 py-2 text-sm font-semibold text-tealPrimary hover:bg-tealPrimary hover:text-white transition-all">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to News</span>
+          </button>
+        </div>
+
+        <!-- Hero Banner -->
+        <div id="post-hero" class="relative mt-6 rounded-b-2xl overflow-hidden h-64 md:h-80 shadow-lg" style="background-size:cover; background-position:center;">
+          <div class="absolute inset-0 hero-overlay"></div>
+          <div class="absolute left-0 bottom-4 w-full px-6 md:px-8">
+            <h1 id="post-title" class="font-serif text-2xl md:text-4xl text-white font-bold"></h1>
+          </div>
+        </div>
+
+        <!-- Metadata -->
+        <div id="post-meta" class="px-6 md:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
+          <div class="text-sm text-slate-600" id="post-meta-left"></div>
+          <div id="post-category" class="text-sm"></div>
+        </div>
+
+        <!-- Post Body -->
+        <article id="post-body" class="px-6 md:px-8 pb-12 prose max-w-none text-charcoal/90"></article>
+
+        <!-- Related Posts -->
+        <section id="related-posts" class="px-6 md:px-8 pb-20">
+          <h3 class="font-serif font-bold text-tealPrimary text-xl mb-4">Related Posts</h3>
+          <div id="related-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- EVENT DETAIL VIEW (hidden by default) -->
+    <div id="event-detail-view" class="hidden fixed inset-0 z-20 overflow-auto">
+      <div class="max-w-5xl mx-auto">
+        <div class="pt-6 px-4">
+          <button id="event-back-btn" onclick="closeEvent()" class="inline-flex items-center space-x-2 bg-white border border-gray-100 shadow rounded-full px-4 py-2 text-sm font-semibold text-tealPrimary hover:bg-tealPrimary hover:text-white transition-all">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Events</span>
+          </button>
+        </div>
+
+        <!-- Hero Banner -->
+        <div id="event-hero" class="relative mt-6 rounded-b-2xl overflow-hidden h-64 md:h-80 shadow-lg" style="background-size:cover; background-position:center;">
+          <div class="absolute inset-0 event-hero-overlay"></div>
+          <div class="absolute left-6 top-6">
+            <div id="event-hero-date" class="inline-flex flex-col items-center justify-center bg-terracotta/10 text-terracotta rounded-2xl px-4 py-2">
+              <span id="event-hero-month" class="text-xs uppercase font-bold tracking-widest leading-none">Jun</span>
+              <span id="event-hero-day" class="text-2xl font-bold font-serif leading-none mt-1">24</span>
+            </div>
+          </div>
+          <div class="absolute left-0 bottom-4 w-full px-6 md:px-8">
+            <h1 id="event-title" class="font-serif text-2xl md:text-4xl text-white font-bold"></h1>
+          </div>
+        </div>
+
+        <!-- Event Meta Row -->
+        <div id="event-meta-row" class="px-6 md:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
+          <div class="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-6">
+            <div class="flex items-center space-x-2 event-meta"><i class="far fa-clock"></i><span id="event-datetime" class="text-sm"></span></div>
+            <div class="flex items-center space-x-2 event-meta"><i class="fas fa-map-pin"></i><span id="event-location" class="text-sm"></span></div>
+          </div>
+          <div>
+            <button id="register-interest-btn" class="event-register-btn text-sm font-bold px-6 py-3 rounded-full">REGISTER YOUR INTEREST</button>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <section id="event-description" class="px-6 md:px-8 pb-8">
+          <div class="max-w-[780px] mx-auto">
+            <div id="event-desc-content" class="text-sm"></div>
+          </div>
+        </section>
+
+        <!-- Registration Form -->
+        <section id="event-register" class="px-6 md:px-8 pb-12 max-w-2xl mx-auto">
+          <h3 id="event-register-heading" class="font-serif font-bold text-2xl mb-3">Register Your Interest</h3>
+          <p class="text-sm text-slate-700 mb-6">Let us know you're coming — we'll be in touch with full details closer to the date.</p>
+
+          <form id="event-register-form" class="space-y-4" onsubmit="handleEventRegister(event)">
+            <div>
+              <label class="text-xs font-semibold">Full Name *</label>
+              <input type="text" id="evt-name" required class="w-full" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold">WhatsApp Number *</label>
+              <input type="tel" id="evt-phone" required placeholder="e.g. +234 801 234 5678" class="w-full" />
+              <div class="text-[12px] mt-2" style="color: #A8D4BE;">We will contact you via WhatsApp with event details</div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold">Number of Attendees *</label>
+              <input type="number" id="evt-attendees" min="1" max="10" value="1" required class="w-full" />
+            </div>
+
+            <button type="submit" id="evt-submit" class="w-full bg-[#2C4A3E] text-[#FAFAF6] font-bold py-3 rounded-full">Submit Interest</button>
+          </form>
+
+          <div id="evt-thanks" class="hidden text-center py-8">
+            <div class="text-3xl text-[var(--event-mint)] mb-3"><i class="fas fa-circle-check"></i></div>
+            <div class="font-semibold text-[var(--event-mint)]">Thank you! We have received your interest and will be in touch soon. God bless you.</div>
+          </div>
+        </section>
+
+        <!-- Other Events -->
+        <section id="other-events" class="px-6 md:px-8 pb-20">
+          <h3 class="font-serif font-bold text-tealPrimary text-xl mb-4">Other Upcoming Events</h3>
+          <div id="other-events-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- VANILLA JAVASCRIPT FOR LANDING INTERFACES -->
@@ -1294,8 +1512,10 @@
       // Navigation scroll tracking active section (Visual Cue highlight)
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav a');
+      // Allow pausing the scroll-spy when viewing an isolated post
+      let scrollSpyEnabled = true;
 
-      window.addEventListener('scroll', () => {
+      function updateActiveNavFromScroll() {
         let current = '';
         sections.forEach(section => {
           const sectionTop = section.offsetTop;
@@ -1311,7 +1531,22 @@
             link.classList.add('text-accent', 'font-semibold');
           }
         });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollSpyEnabled) return;
+        updateActiveNavFromScroll();
       });
+
+      // Helper to explicitly set active nav link by hash (e.g., '#blog')
+      function setActiveNavByHash(hash) {
+        navLinks.forEach(link => {
+          link.classList.remove('text-accent', 'font-semibold');
+          if (link.getAttribute('href') === hash) {
+            link.classList.add('text-accent', 'font-semibold');
+          }
+        });
+      }
 
       // Mobile Hamburger Navigation Toggling Handler
       const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -1545,6 +1780,375 @@
           successNotice.classList.add('hidden');
         }, 12000);
       }
+
+      /* BLOG POST SYSTEM (single-file view with hash navigation) */
+      const posts = [
+        {
+          id: 'blog-post-1',
+          title: 'Restoring Dignity: A Day in the Life of Father Joseph',
+          date: 'June 8, 2026',
+          author: 'Father Emmanuel',
+          category: 'Feature Story',
+          excerpt: 'Find out how St. Vianney group took Father Joseph from a drafty single room to a nursing-supported group home.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'Father Joseph spent decades serving communities overseas. Now, in his later years, compassionate lay volunteers and medical support have restored the dignity of his daily life through consistent caregiving, respectful companionship, and routine access to clinical resources.',
+            'At St. John Mary Vianney, practical needs are matched with spiritual care. Residents like Father Joseph attend daily prayer, share meals with volunteers, and receive on-site nursing visits—helping them remain active members of parish life and maintain their sacramental routines.',
+            'This feature follows a day in Father Joseph\'s life: morning spiritual exercises, a mid-day physiotherapy session, and evening reflections with fellow residents. The program emphasizes personal agency, medical dignity, and community reintegration for elderly clergy.'
+          ]
+        },
+        {
+          id: 'blog-post-2',
+          title: 'Our New Cottage Medical Wing Construction Begins',
+          date: 'May 24, 2026',
+          author: 'Administration',
+          category: 'Organization',
+          excerpt: 'We have broken ground on a dedicated physio rehabilitation alcove to support wheelchair exercises and therapy.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'The new medical wing will provide rehabilitation equipment, a physiotherapy area, and private consultation spaces where retired clergy can receive targeted mobility support and chronic-condition management.',
+            'Local donors and diocesan grants made the project possible. The wing is designed for accessibility, privacy, and integrated pastoral support so residents can remain spiritually nourished while receiving medical attention.',
+            'Construction includes community spaces for group therapy, a small chapel for private prayer, and exterior walking paths to encourage gentle daily exercise among residents.'
+          ]
+        },
+        {
+          id: 'blog-post-3',
+          title: 'Parish Diocesan Grants Support Core Food Mission',
+          date: 'April 12, 2026',
+          author: 'Fundraising',
+          category: 'Community Grant',
+          excerpt: 'A matching grant ensures our pantry remains loaded with healthy organic produce for the rest of 2026.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'Reliable nutrition is foundational to elderly care. Our grant funding secures fresh produce, dietary planning, and meal delivery services tailored for older clergy with specific needs.',
+            'Volunteers coordinate weekly menus with medical staff to ensure balanced diets that support chronic-condition management and medication interaction safety.',
+            'Community kitchens also become moments of social interaction—residents share stories as they prepare communal meals, reinforcing dignity, memory, and joy.'
+          ]
+        }
+      ];
+
+      let _savedScrollY = 0;
+
+      function populatePostView(post) {
+        const hero = document.getElementById('post-hero');
+        const title = document.getElementById('post-title');
+        const metaLeft = document.getElementById('post-meta-left');
+        const categoryEl = document.getElementById('post-category');
+        const body = document.getElementById('post-body');
+
+        // Hero background (fallback gradient if image missing)
+        if (post.coverImage) {
+          hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('${post.coverImage}')`;
+        } else {
+          hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), linear-gradient(135deg,#123441,#286a83)`;
+        }
+
+        title.textContent = post.title;
+        metaLeft.innerHTML = `<span class="text-sm text-slate-500 mr-3">${post.date}</span><span class="text-sm text-slate-500">by ${post.author}</span>`;
+        categoryEl.innerHTML = `<span class="inline-block bg-tealPrimary text-white text-xs font-semibold px-3 py-1 rounded-full">${post.category}</span>`;
+
+        // Body paragraphs
+        body.innerHTML = '';
+        post.bodyContent.forEach(p => {
+          const pEl = document.createElement('p');
+          pEl.className = 'mb-4 text-sm leading-relaxed';
+          pEl.textContent = p;
+          body.appendChild(pEl);
+        });
+
+        renderRelatedPosts(post.id);
+      }
+
+      function openPost(id) {
+        const post = posts.find(p => p.id === id);
+        if (!post) return;
+
+        // if already open, skip
+        const view = document.getElementById('post-detail-view');
+        if (!view.classList.contains('hidden') && location.hash === `#${id}`) return;
+
+        _savedScrollY = window.scrollY || document.documentElement.scrollTop;
+        document.getElementById('site-main').classList.add('hidden');
+        view.classList.remove('hidden');
+        // Ensure the post view content starts below the sticky navbar.
+        // Calculate header height at runtime and add 16px breathing room.
+        const header = document.getElementById('main-navigation');
+        const headerHeight = header ? header.offsetHeight : 80; // fallback
+        view.style.paddingTop = (headerHeight + 16) + 'px';
+
+        // Pause scroll-spy and explicitly set the Blog nav link active
+        scrollSpyEnabled = false;
+        setActiveNavByHash('#blog');
+        populatePostView(post);
+        // update hash (this enables back-button navigation)
+        if (location.hash !== `#${id}`) {
+          history.pushState(null, '', `#${id}`);
+        }
+        // ensure at top of post
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      function closePost() {
+        const view = document.getElementById('post-detail-view');
+        if (view.classList.contains('hidden')) return;
+
+        view.classList.add('hidden');
+        document.getElementById('site-main').classList.remove('hidden');
+
+        // remove any top padding we set when opening
+        view.style.paddingTop = '';
+
+        // re-enable scroll-spy and recalculate active nav
+        scrollSpyEnabled = true;
+        // Update nav state to reflect the current scroll position on the main page
+        setTimeout(() => {
+          updateActiveNavFromScroll();
+        }, 30);
+
+        // restore previous scroll position
+        window.scrollTo({ top: _savedScrollY || 0, behavior: 'auto' });
+
+        // remove hash without adding history entry
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+
+      function renderRelatedPosts(currentId) {
+        const container = document.getElementById('related-list');
+        container.innerHTML = '';
+
+        posts.filter(p => p.id !== currentId).forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col justify-between';
+
+          const inner = `
+            <div>
+              <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">${p.date}</span>
+              <h4 class="font-serif font-bold text-tealPrimary mt-2 mb-2 text-lg">${p.title}</h4>
+              <p class="text-sm text-charcoal/70 line-clamp-3">${p.excerpt}</p>
+            </div>
+            <div class="pt-4">
+              <a href="#${p.id}" onclick="openPost('${p.id}'); return false;" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center">
+                Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+              </a>
+            </div>
+          `;
+
+          card.innerHTML = inner;
+          container.appendChild(card);
+        });
+      }
+
+      // Respond to back/forward navigation
+      window.addEventListener('hashchange', () => {
+        const hash = location.hash.replace('#', '');
+        if (!hash) {
+          // no hash -> close post view
+          closePost();
+        } else {
+          // if hash matches a post id, open it
+          const postExists = posts.some(p => p.id === hash);
+          if (postExists) openPost(hash);
+        }
+      });
+
+      // Wire up plain links and auto-open on load if hash points to a post
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[data-post-id]').forEach(a => {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = a.getAttribute('data-post-id');
+            openPost(id);
+          });
+        });
+
+        // On first load, if hash references a post, open it
+        const initialHash = location.hash.replace('#', '');
+        if (initialHash && posts.some(p => p.id === initialHash)) {
+          openPost(initialHash);
+        }
+      });
+
+      /* EVENT DETAIL SYSTEM (single-file) */
+      const events = [
+        {
+          id: 'event-1',
+          title: 'Annual Feast Day & Liturgical Gala Dinner',
+          date: 'June 24, 2026',
+          month: 'Jun',
+          day: '24',
+          time: '4:00 PM - 8:30 PM',
+          location: 'Main Cathedral Hall',
+          description: [
+            'Join our Annual Feast Day for an evening of solemn liturgy followed by a community banquet. Proceeds support winter fuel and resident care programs for elderly clergy.',
+            'The evening includes traditional Tridentine and Novus Ordo celebrations, followed by a fundraising dinner with guest speakers and testimonials from resident priests.',
+            'Tickets and table sponsorships support ongoing medical and housing needs; volunteers coordinate seating and dietary accommodations to ensure every guest is welcomed.'
+          ],
+          image: '/assets/asset.png'
+        },
+        {
+          id: 'event-2',
+          title: 'Senior Clergy Annual Health & Fitness Drive',
+          date: 'July 15, 2026',
+          month: 'Jul',
+          day: '15',
+          time: '9:00 AM - 3:00 PM',
+          location: 'Vianney Cottage Base',
+          description: [
+            'A collaborative voluntary health day offering medical testing, physiotherapy sessions, and wellness consultations specifically tailored for retired clergy.',
+            'Licensed professionals and nursing practitioners provide mobility assessments and personalized care plans to help residents maintain well-being and independence.',
+            'The day also includes gentle group exercises and nutrition workshops to support long-term health outcomes for participants.'
+          ],
+          image: '/assets/asset.png'
+        },
+        {
+          id: 'event-3',
+          title: 'Parish Family Picnic & Sharing Circle',
+          date: 'August 8, 2026',
+          month: 'Aug',
+          day: '08',
+          time: '12:00 PM - 4:00 PM',
+          location: 'Garden Groves, Vianney Home',
+          description: [
+            'An open-air picnic in the garden groves invites parishioners and children to spend relaxed afternoons listening to our elderly fathers share inspiring mission stories.',
+            'Families and volunteers bring dishes for communal sharing, while residents enjoy recreational activities and gentle outdoor exercise in our serene grounds.',
+            'This gathering strengthens community bonds and supports our food mission, with proceeds used for pantry supplies and resident nutritional needs.'
+          ],
+          image: '/assets/asset.png'
+        }
+      ];
+
+      function populateEventView(ev) {
+        const hero = document.getElementById('event-hero');
+        const title = document.getElementById('event-title');
+        const heroMonth = document.getElementById('event-hero-month');
+        const heroDay = document.getElementById('event-hero-day');
+        const datetime = document.getElementById('event-datetime');
+        const location = document.getElementById('event-location');
+        const desc = document.getElementById('event-desc-content');
+
+        hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('${ev.image}')`;
+        title.textContent = ev.title;
+        heroMonth.textContent = ev.month;
+        heroDay.textContent = ev.day;
+        datetime.textContent = `${ev.date} • ${ev.time}`;
+        location.textContent = ev.location;
+
+        desc.innerHTML = '';
+        ev.description.forEach(p => {
+          const pEl = document.createElement('p');
+          pEl.className = 'mb-4';
+          pEl.textContent = p;
+          desc.appendChild(pEl);
+        });
+
+        renderOtherEvents(ev.id);
+      }
+
+      let _savedScrollY_event = 0;
+
+      function openEvent(id) {
+        const ev = events.find(e => e.id === id);
+        if (!ev) return;
+        const view = document.getElementById('event-detail-view');
+        if (!view.classList.contains('hidden') && location.hash === `#${id}`) return;
+
+        _savedScrollY_event = window.scrollY || document.documentElement.scrollTop;
+        document.getElementById('site-main').classList.add('hidden');
+        view.classList.remove('hidden');
+        // top spacing below navbar
+        const header = document.getElementById('main-navigation');
+        const headerHeight = header ? header.offsetHeight : 80;
+        view.style.paddingTop = (headerHeight + 16) + 'px';
+
+        // pause scroll-spy and set Events nav active
+        scrollSpyEnabled = false;
+        setActiveNavByHash('#events');
+
+        populateEventView(ev);
+        if (location.hash !== `#${id}`) history.pushState(null, '', `#${id}`);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      function closeEvent() {
+        const view = document.getElementById('event-detail-view');
+        if (view.classList.contains('hidden')) return;
+        view.classList.add('hidden');
+        document.getElementById('site-main').classList.remove('hidden');
+        view.style.paddingTop = '';
+
+        // re-enable scroll-spy and recalc nav
+        scrollSpyEnabled = true;
+        setTimeout(() => updateActiveNavFromScroll(), 30);
+
+        window.scrollTo({ top: _savedScrollY_event || 0, behavior: 'auto' });
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+
+      function renderOtherEvents(currentId) {
+        const container = document.getElementById('other-events-list');
+        container.innerHTML = '';
+        events.filter(e => e.id !== currentId).forEach(e => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between p-4';
+          card.innerHTML = `
+            <div>
+              <div class="inline-flex items-center bg-terracotta/10 text-terracotta rounded-2xl px-3 py-2 mb-3">
+                <span class="text-xs font-bold">${e.month}</span>
+                <span class="ml-2 text-2xl font-serif font-bold">${e.day}</span>
+              </div>
+              <h4 class="font-serif font-bold text-tealPrimary text-lg mb-2">${e.title}</h4>
+              <p class="text-sm text-charcoal/70">${e.description[0]}</p>
+            </div>
+            <div class="pt-4">
+              <a href="#${e.id}" onclick="openEvent('${e.id}'); return false;" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center">Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i></a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // Event form handling
+      function handleEventRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('evt-name').value.trim();
+        const phone = document.getElementById('evt-phone').value.trim();
+        const attendees = parseInt(document.getElementById('evt-attendees').value, 10) || 1;
+
+        if (!name || !phone || attendees < 1) {
+          alert('Please complete required fields (Name, WhatsApp Number, Attendees).');
+          return;
+        }
+
+        // Simulate success
+        document.getElementById('event-register-form').classList.add('hidden');
+        document.getElementById('evt-thanks').classList.remove('hidden');
+      }
+
+      // Wire event links and check hash on load for events
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[data-event-id]').forEach(a => {
+          a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            openEvent(a.getAttribute('data-event-id'));
+          });
+        });
+
+        const initialHash2 = location.hash.replace('#', '');
+        if (initialHash2 && events.some(ev => ev.id === initialHash2)) {
+          openEvent(initialHash2);
+        }
+      });
+
+      // Listen for hash changes for events
+      window.addEventListener('hashchange', () => {
+        const hash = location.hash.replace('#', '');
+        if (!hash) {
+          closeEvent();
+        } else {
+          const evExists = events.some(ev => ev.id === hash);
+          if (evExists) openEvent(hash);
+        }
+      });
     </script>
   </body>
 </html>
