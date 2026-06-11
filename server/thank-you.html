@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You — St. John Mary Vianney Group</title>
+    <link rel="icon" type="image/png" href="/assets/asset.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              tealPrimary: '#1a4a5c',
+              tealDark: '#123441',
+              sand: '#faf6f0',
+              accent: '#A8D4BE',
+              accentDark: '#8ebd9b',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-sans bg-sand text-charcoal min-h-screen flex items-center justify-center p-4">
+    <div id="status-container" class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10 text-center space-y-6">
+      <div id="loading" class="space-y-4 py-8">
+        <svg class="animate-spin h-10 w-10 text-accent mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="text-sm text-charcoal/60">Verifying your payment...</p>
+      </div>
+
+      <div id="success-view" class="hidden space-y-6">
+        <div class="w-20 h-20 mx-auto bg-[#eaf7f1] rounded-full flex items-center justify-center shadow-inner border-2 border-[#c6ecd7]">
+          <svg class="w-10 h-10 text-[#2c7a52]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+
+        <div class="space-y-2">
+          <h1 class="font-serif font-bold text-2xl sm:text-3xl text-tealPrimary">Thank You For Supporting Us!</h1>
+          <p class="text-sm sm:text-base text-charcoal/70 leading-relaxed">
+            Your generous donation has been received. A digital receipt has been sent to your email. Your support brings comfort, care, and dignity to our elderly clergy.
+          </p>
+        </div>
+
+        <div class="bg-sand rounded-2xl p-5 border border-gray-100 text-left space-y-2 text-sm text-charcoal/70">
+          <p>Your contribution directly funds safe shelter, nutritious meals, and compassionate medical care for retired priests and religious who devoted their lives to serving others.</p>
+        </div>
+
+        <a href="/" class="inline-block w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300 tracking-wider text-sm uppercase">
+          Return to Home
+        </a>
+      </div>
+
+      <div id="failure-view" class="hidden space-y-6">
+        <div class="w-20 h-20 mx-auto bg-red-50 rounded-full flex items-center justify-center shadow-inner border-2 border-red-200">
+          <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+
+        <div class="space-y-2">
+          <h1 class="font-serif font-bold text-2xl sm:text-3xl text-red-700">Payment Could Not Be Verified</h1>
+          <p class="text-sm sm:text-base text-charcoal/70 leading-relaxed">
+            We were unable to confirm your payment status. If you believe this is an error, please contact our support team.
+          </p>
+        </div>
+
+        <a href="/" class="inline-block w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300 tracking-wider text-sm uppercase">
+          Return to Home
+        </a>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var reference = params.get('reference');
+
+        if (!reference) {
+          document.getElementById('loading').classList.add('hidden');
+          document.getElementById('failure-view').classList.remove('hidden');
+          return;
+        }
+
+        fetch('/api/verify-donation?reference=' + encodeURIComponent(reference))
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            document.getElementById('loading').classList.add('hidden');
+            if (data.verified) {
+              document.getElementById('success-view').classList.remove('hidden');
+            } else {
+              document.getElementById('failure-view').classList.remove('hidden');
+            }
+          })
+          .catch(function() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('failure-view').classList.remove('hidden');
+          });
+      })();
+    </script>
+  </body>
+</html>

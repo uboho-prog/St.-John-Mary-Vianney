@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>St. John Mary Vianney — Caring for Senior Clergy & Religious</title>
+    <title>St. John Mary Vianney Group: Caring for Senior Clergy & Religious</title>
     <link rel="icon" type="image/png" href="/assets/asset.png">
     <link rel="apple-touch-icon" href="/assets/asset.png">
     
@@ -101,22 +101,67 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #A8D4BE;
       }
+
+      /* ----- Motion Animations ----- */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes typewriter {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+      .reveal-delay-5 { transition-delay: 0.5s; }
+
+      .typewriter-cursor::after {
+        content: '|';
+        animation: blink 0.8s step-end infinite;
+        color: #1a4a5c;
+        font-weight: 300;
+      }
     </style>
   </head>
   <body class="font-sans bg-sand text-charcoal flex flex-col min-h-screen">
 
     <!-- 2. NAVIGATION BAR -->
-    <header id="main-navigation" class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-4 transition-all duration-300 z-40">
+    <header id="main-navigation" class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-2 md:py-2.5 transition-all duration-300 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        
+
         <!-- Logo -->
         <a href="#home" class="flex items-center space-x-1.5 group header-logo">
-          <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
+          <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover shadow-md">
           <div class="flex flex-col">
-            <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-tealPrimary group-hover:text-accent transition-colors duration-300">
-              ST. JOHN MARY VIANNEY
+            <span class="font-serif font-bold text-[13.5px] md:text-[15px] leading-tight tracking-tight text-tealPrimary group-hover:text-accent transition-colors duration-300">
+              ST. JOHN MARY VIANNEY GROUP
             </span>
-            <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-medium scale-y-95 origin-left">
+            <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-[#8c969b] font-medium scale-y-95 origin-left">
               Elderly Clergy Support Group
             </span>
           </div>
@@ -134,12 +179,12 @@
 
         <!-- CTA & Hamburger -->
         <div class="flex items-center space-x-4">
-          <a href="javascript:void(0)" onclick="openDonationModal(100)" class="hidden sm:inline-flex bg-accent hover:bg-accentDark text-tealDark font-bold text-xs md:text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 tracking-wider">
+          <a href="javascript:void(0)" onclick="openDonationModal()" class="hidden sm:inline-flex bg-accent hover:bg-accentDark text-tealDark font-bold text-[11px] md:text-xs px-4 md:px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 tracking-wider">
             DONATE NOW
           </a>
           <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="lg:hidden text-tealPrimary focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors" aria-label="Toggle navigation menu">
-            <i id="hamburger-icon" class="fas fa-bars text-2xl"></i>
+          <button id="mobile-menu-btn" class="lg:hidden text-tealPrimary focus:outline-none p-1.5 rounded-md hover:bg-gray-100 transition-colors" aria-label="Toggle navigation menu">
+            <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
           </button>
         </div>
       </div>
@@ -166,20 +211,46 @@
             <span>Contact</span> <i class="fas fa-chevron-right text-xs text-gray-300"></i>
           </a>
         </nav>
-        <a href="javascript:void(0)" onclick="openDonationModal(100)" class="mobile-nav-link block w-full text-center bg-accent hover:bg-accentDark text-tealDark font-bold py-3 rounded-full transition-all duration-300 shadow">
+        <a href="javascript:void(0)" onclick="openDonationModal()" class="mobile-nav-link block w-full text-center bg-accent hover:bg-accentDark text-tealDark font-bold py-3 rounded-full transition-all duration-300 shadow">
           DONATE NOW
         </a>
       </div>
     </header>
 
     <!-- 3. HERO SECTION -->
-    <section id="home" class="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-sand via-white to-slateWarm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          <!-- Hero Left: Dynamic Inspiring Copy and Buttons -->
-          <div class="flex flex-col text-left space-y-6 lg:space-y-8">
-            <div class="space-y-2">
+    <section id="home" class="relative w-full bg-[#FFF8F0] lg:h-[700px] lg:overflow-hidden">
+
+      <!-- Mobile/Tablet image: capped-height top block, never overflows viewport width -->
+      <div class="block lg:hidden w-full overflow-hidden max-h-[240px] sm:max-h-[320px]">
+        <img
+          src="/assets/hero.JPG"
+          alt="Elderly religious sisters sharing a warm embrace"
+          class="w-full h-[240px] sm:h-[320px] object-cover"
+          style="object-position: center 30%;"
+        />
+      </div>
+
+      <!-- Desktop background photo: full-bleed, anchored to the right -->
+      <img
+        src="/assets/hero.JPG"
+        alt="Elderly religious sisters sharing a warm embrace"
+        class="hidden lg:block absolute inset-0 w-full h-full"
+        style="object-fit: cover; object-position: right center; transform: rotate(4deg) scale(1.25) translateX(8%); transform-origin: center;"
+      />
+
+      <!-- Desktop warm off-white gradient that fades left to right -->
+      <div
+        class="hidden lg:block absolute inset-0"
+        style="z-index: 1; background: linear-gradient(to right, rgba(255, 248, 240, 1) 0%, rgba(255, 248, 240, 1) 30%, rgba(255, 248, 240, 0.5) 48%, rgba(255, 248, 240, 0) 62%);"
+      ></div>
+
+      <!-- Foreground content: stacked block on mobile, left-half overlay on desktop -->
+      <div class="relative lg:absolute lg:inset-0 bg-[#FFF8F0] lg:bg-transparent" style="z-index: 2;">
+        <div class="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12 lg:py-0 lg:h-full lg:flex lg:items-center">
+
+          <!-- Hero Copy and Buttons -->
+          <div class="flex flex-col text-left space-y-4 max-w-2xl">
+            <div class="reveal reveal-delay-1 space-y-2">
               <span class="inline-block text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">
                 CARING FOR THOSE WHO SERVED
               </span>
@@ -187,13 +258,13 @@
                 Honoring the Elders Who Gave Their Lives <br class="hidden md:inline"><span class="italic text-terracotta">to God</span>
               </h1>
             </div>
-            
-            <p class="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-xl">
-              Throughout their lifetimes, they walked with us — celebrating our baptisms, counseling our decisions, offering comfort in our sorrows, and breaking the bread of salvation. Now in their twilight years without family support, it is our turn to be their family. 
+
+            <p class="reveal reveal-delay-2 text-charcoal/80 text-base md:text-lg leading-relaxed max-w-xl">
+              Throughout their lifetimes, they walked with us, celebrating our baptisms, counseling our decisions, offering comfort in our sorrows, and breaking the bread of salvation. Now in their twilight years without family support, it is our turn to be their family.
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
-              <a href="javascript:void(0)" onclick="openDonationModal(100)" class="bg-accent hover:bg-accentDark text-tealDark text-center font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all-300 transform hover:-translate-y-0.5 tracking-wider">
+
+            <div class="reveal reveal-delay-3 flex flex-row items-center gap-3 pt-2">
+              <a href="#donate" class="bg-accent hover:bg-accentDark text-tealDark text-center font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all-300 transform hover:-translate-y-0.5 tracking-wider">
                 SHOW YOUR SUPPORT
               </a>
               <a href="#about" class="border-2 border-tealPrimary hover:bg-tealPrimary hover:text-white text-tealPrimary text-center font-bold px-8 py-3.5 rounded-full transition-all-300 tracking-wider">
@@ -202,7 +273,7 @@
             </div>
 
             <!-- Tiny descriptive visual counters -->
-            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200/60 max-w-lg">
+            <div class="reveal reveal-delay-4 grid grid-cols-3 gap-4 pt-6 border-t border-gray-200/60 max-w-lg">
               <div class="flex flex-col">
                 <span class="text-2xl md:text-3xl font-serif font-bold text-tealPrimary">45+</span>
                 <span class="text-xs text-[#8c969b] tracking-wider uppercase mt-1">Priests Assisted</span>
@@ -216,147 +287,52 @@
                 <span class="text-xs text-[#8c969b] tracking-wider uppercase mt-1">Compassionate Care</span>
               </div>
             </div>
-
           </div>
 
-          <!-- Hero Right: Elegant SVG Illustration and Floating Contact Stamp -->
-          <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/3] rounded-2xl md:rounded-[32px] overflow-hidden shadow-2xl bg-gradient-to-tr from-tealDark via-tealPrimary to-tealLight border-4 border-white flex items-center justify-center group lg:justify-self-end">
-            
-            <!-- Custom Embedded Vector Illustration of Elderly Priest -->
-            <svg class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Grid background pattern -->
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                </pattern>
-                <linearGradient id="halo-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#f19273" stop-opacity="0.3"/>
-                  <stop offset="100%" stop-color="#e8714a" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <rect width="800" height="600" fill="#143c4b" />
-              <rect width="800" height="600" fill="url(#grid)" />
-              
-              <!-- Radiant Halo Pattern behind head -->
-              <circle cx="400" cy="270" r="160" fill="url(#halo-glow)" filter="blur(10px)" />
-              <g stroke="rgba(232, 113, 74, 0.15)" stroke-width="1.5">
-                <line x1="400" y1="70" x2="400" y2="470" />
-                <line x1="200" y1="270" x2="600" y2="270" />
-                <line x1="258" y1="128" x2="542" y2="412" />
-                <line x1="258" y1="412" x2="542" y2="128" />
-              </g>
-
-              <!-- Priest Silhouette & Portrait features -->
-              <!-- Cassock/Shoulders -->
-              <path d="M 220 600 C 220 500, 260 450, 310 430 L 490 430 C 540 450, 580 500, 580 600 Z" fill="#0b1b22" />
-              <!-- Liturgical stole detailing -->
-              <path d="M 335 432 L 350 600" stroke="#9e2a2b" stroke-width="24" stroke-linecap="round" />
-              <path d="M 465 432 L 450 600" stroke="#9e2a2b" stroke-width="24" stroke-linecap="round" />
-              <path d="M 335 432 L 350 600" stroke="#e8714a" stroke-width="4" stroke-dasharray="10 5" />
-              <path d="M 465 432 L 450 600" stroke="#e8714a" stroke-width="4" stroke-dasharray="10 5" />
-              <!-- Golden cross embroidery on stole -->
-              <path d="M 342 480 L 342 505 M 333 490 L 351 490" stroke="#e8714a" stroke-width="3" stroke-linecap="round" />
-              <path d="M 458 480 L 458 505 M 449 490 L 467 490" stroke="#e8714a" stroke-width="3" stroke-linecap="round" />
-
-              <!-- Clerical collar base -->
-              <path d="M 360 430 C 360 405, 440 405, 440 430 Z" fill="#0b1b22" />
-              <!-- Clerical white tab -->
-              <rect x="382" y="415" width="36" height="15" fill="#ffffff" rx="2" />
-
-              <!-- Head & Neck -->
-              <path d="M 365 415 L 365 370 C 365 370, 400 375, 435 370 L 435 415 Z" fill="#ebd2c1" />
-              <head-shadow>
-                <path d="M 365 375 C 365 375, 400 390, 435 375 L 435 385 C 435 385, 400 395, 365 385 Z" fill="#d9b6a0" opacity="0.6"/>
-              </head-shadow>
-
-              <!-- Serene Face -->
-              <circle cx="400" cy="270" r="95" fill="#ffdcc4" />
-              <!-- Ears -->
-              <circle cx="295" cy="270" r="16" fill="#f8ceb4" />
-              <circle cx="505" cy="270" r="16" fill="#f8ceb4" />
-
-              <!-- Silver Hair / Hair volume -->
-              <!-- Back hair -->
-              <path d="M 305 270 C 295 160, 505 160, 495 270 C 515 270, 510 240, 495 210 C 475 160, 325 160, 305 210 C 290 240, 285 270, 305 270 Z" fill="#e1e8ed" />
-              <!-- Sideburns -->
-              <path d="M 300 240 Q 310 240 310 275 L 302 275 Z" fill="#d6dee2" />
-              <path d="M 500 240 Q 490 240 490 275 L 498 275 Z" fill="#d6dee2" />
-              <!-- Sweeping hair front strands -->
-              <path d="M 315 210 C 330 180, 390 170, 400 185 C 410 170, 470 180, 485 210 C 495 190, 480 160, 400 165 C 320 160, 305 190, 315 210 Z" fill="#ffffff" />
-              <path d="M 320 195 Q 360 175 390 195" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8" />
-              <path d="M 480 195 Q 440 175 410 195" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.8" />
-
-              <!-- Glasses -->
-              <circle cx="365" cy="265" r="22" stroke="#e8714a" stroke-width="4" fill="rgba(255,255,255,0.15)" />
-              <circle cx="435" cy="265" r="22" stroke="#e8714a" stroke-width="4" fill="rgba(255,255,255,0.15)" />
-              <path d="M 387 265 L 413 265" stroke="#e8714a" stroke-width="4" />
-              <path d="M 343 263 Q 325 255 310 260" stroke="#e8714a" stroke-width="3" fill="none" />
-              <path d="M 457 263 Q 475 255 490 260" stroke="#e8714a" stroke-width="3" fill="none" />
-
-              <!-- Closed smiling eyes (behind glasses) -->
-              <path d="M 353 265 Q 365 256 377 265" stroke="#704424" stroke-width="3.5" stroke-linecap="round" fill="none" />
-              <path d="M 423 265 Q 435 256 447 265" stroke="#704424" stroke-width="3.5" stroke-linecap="round" fill="none" />
-              
-              <!-- Soft wrinkles and cheeks -->
-              <path d="M 338 295 Q 350 286 360 293" stroke="#e4ae8d" stroke-width="2.5" fill="none" />
-              <path d="M 462 295 Q 450 286 440 293" stroke="#e4ae8d" stroke-width="2.5" fill="none" />
-              <!-- Kind smile -->
-              <path d="M 368 315 Q 400 342 432 315" stroke="#873e23" stroke-width="4" stroke-linecap="round" fill="none" stroke-linejoin="round" />
-              <path d="M 362 314 Q 366 322 371 316" stroke="#873e23" stroke-width="2.5" stroke-linecap="round" fill="none" />
-              <path d="M 438 314 Q 434 322 429 316" stroke="#873e23" stroke-width="2.5" stroke-linecap="round" fill="none" />
-              <!-- Silver eyebrows -->
-              <path d="M 345 235 Q 365 225 382 238" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" />
-              <path d="M 455 235 Q 435 225 418 238" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" />
-            </svg>
-
-            <!-- Floating Stamp Design Details -->
-            <div class="absolute inset-0 bg-gradient-to-t from-tealDark/70 via-transparent to-transparent opacity-80 pointer-events-none"></div>
-
-            <!-- Floating Badge in bottom-left segment -->
-            <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white/95 backdrop-blur shadow-xl rounded-2xl p-3 md:p-4 border border-tealPrimary/10 flex items-center space-x-3 max-w-[260px] animate-bounce-slow">
-              <div class="w-10 h-10 md:w-12 md:h-12 bg-terracotta text-white rounded-xl flex items-center justify-center text-lg md:text-xl shadow-inner">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div class="flex flex-col text-left">
-                <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-semibold">Talk to a Caregiver</span>
-                <span class="font-bold text-sm md:text-base text-tealPrimary whitespace-nowrap">+234 7068534169</span>
-              </div>
+          <!-- Contact Card: in-flow on mobile, floating bottom-right on desktop -->
+          <div class="reveal reveal-delay-5 mt-8 lg:mt-0 lg:absolute lg:bottom-6 lg:right-8 bg-white/95 backdrop-blur shadow-xl rounded-2xl p-3 md:p-4 border border-tealPrimary/10 flex items-center space-x-3 max-w-[260px]">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-terracotta text-white rounded-xl flex items-center justify-center text-lg md:text-xl shadow-inner">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="flex flex-col text-left">
+              <span class="text-[10px] uppercase tracking-widest text-[#8c969b] font-semibold">Talk to a Caregiver</span>
+              <span class="font-bold text-sm md:text-base text-tealPrimary whitespace-nowrap">+234 7068534169</span>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
 
     <!-- 4. PARTNER LOGOS BAR -->
-    <section class="bg-white py-8 border-y border-gray-100">
+    <section class="reveal bg-white py-8 border-y border-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-center text-xs uppercase tracking-[0.2em] text-[#8c969b] font-medium mb-6">
           Supported & Trusted By Diocesan Networks & Catholic Groups
         </p>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 items-center justify-items-center opacity-70">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 items-center justify-items-center opacity-70">
           <!-- Logo 1: Diocese description -->
-          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-church text-xl text-tealPrimary"></i>
             <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Mercy</span>
           </div>
           <!-- Logo 2 -->
-          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-dove text-xl text-tealPrimary"></i>
             <span class="font-serif font-semibold text-xs tracking-wider uppercase">Diocese of St. Mary</span>
           </div>
           <!-- Logo 3 -->
-          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-heart text-xl text-tealPrimary"></i>
             <span class="font-serif font-semibold text-xs tracking-wider uppercase">Catholic Charities</span>
           </div>
           <!-- Logo 4 -->
-          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-sun text-xl text-tealPrimary"></i>
             <span class="font-serif font-semibold text-xs tracking-wider uppercase">Vianney Guild</span>
           </div>
           <!-- Logo 5 -->
-          <div class="flex items-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-cross text-xl text-tealPrimary"></i>
             <span class="font-serif font-semibold text-xs tracking-wider uppercase">Sacred Heart Alliance</span>
           </div>
@@ -365,7 +341,7 @@
     </section>
 
     <!-- 5. MISSION STATEMENT SECTION -->
-    <section id="about" class="py-16 md:py-24 bg-sand">
+    <section id="about" class="reveal py-16 md:py-24 bg-sand">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         <!-- Decorative heart/cross icon -->
@@ -463,7 +439,7 @@
     </section>
 
     <!-- 6. SCROLLING MARQUEE STRIP -->
-    <div class="bg-terracotta text-white overflow-hidden py-4 shadow-md flex items-center select-none">
+    <div class="reveal bg-terracotta text-white overflow-hidden py-4 shadow-md flex items-center select-none">
       <div class="animate-marquee flex items-center">
         <span class="text-lg md:text-xl font-serif tracking-widest uppercase mx-4 flex items-center space-x-1">
           <span>• Prayer</span> <span class="mx-4 text-white/40">|</span> 
@@ -489,7 +465,7 @@
     </div>
 
     <!-- 7. OUR SERVICES / WHAT WE DO -->
-    <section id="services" class="py-16 md:py-24 bg-white">
+    <section id="services" class="reveal py-16 md:py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -541,7 +517,7 @@
     </section>
 
     <!-- 8. UPCOMING EVENTS SECTION -->
-    <section id="events" class="py-16 md:py-24 bg-sand">
+    <section id="events" class="reveal py-16 md:py-24 bg-sand">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16">
@@ -637,119 +613,70 @@
     </section>
 
     <!-- 9. PHOTO GALLERY SECTION -->
-    <section id="gallery" class="py-16 md:py-24 bg-white">
+    <section id="gallery" class="reveal py-16 md:py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span class="text-terracotta uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">MEMORIES</span>
           <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Moments of Joy</h2>
           <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
-            A small glimpse into the everyday lives of our residents — surrounded by love, community, health, and dignity.
+            A small glimpse into the everyday lives of our residents, surrounded by love, community, health, and dignity.
           </p>
         </div>
 
-        <!-- 3x2 Grid of Placeholders using themed background classes and overlay captions -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <!-- Box 1 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealPrimary shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-tr from-tealDark via-tealLight to-transparent opacity-80 z-10"></div>
-            <!-- Embedded themed vector content -->
-            <div class="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center p-6 text-white text-center">
-              <i class="fas fa-church text-4xl mb-4 text-[#f19273]/80 group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Spiritual Fellowship</span>
-              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Sacrament Hours</p>
-            </div>
-            <!-- Hover overlay -->
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Sacramental Prayer</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Daily Mass held inside our Saint Vianney private home chapel.</p>
-            </div>
-          </div>
+        <!-- Masonry photo grid: 1 col mobile, 2 cols tablet, 3 cols desktop. Natural heights. -->
+        <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 [&>*]:mb-6"></div>
 
-          <!-- Box 2 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealDark shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#ce5028] via-[#e8714a] to-transparent opacity-75 z-10"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
-              <i class="fas fa-mug-hot text-4xl mb-4 text-[#f19273]/80 group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Morning Breakfast Discussions</span>
-              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Shared Meals</p>
-            </div>
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Laughter Over Tea</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Retired parish fathers swap missionary journals over fresh breakfast culinary preparations.</p>
-            </div>
-          </div>
-
-          <!-- Box 3 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slateWarm shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-tr from-tealLight via-slateWarm to-[#ebd2c1] opacity-60 z-10"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-tealDark text-center">
-              <i class="fas fa-seedling text-4xl mb-4 text-terracotta group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Organic Garden Maintenance</span>
-              <p class="text-xs text-tealPrimary/70 uppercase tracking-wider mt-1">Outdoor Wellness</p>
-            </div>
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Peace in the Gardens</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Gardening provides gentle cardiovascular exercise and refreshing organic herbal yields.</p>
-            </div>
-          </div>
-
-          <!-- Box 4 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-tr from-tealPrimary to-tealDark shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-tr from-tealDark via-slate-700 to-transparent opacity-85 z-10"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
-              <i class="fas fa-hand-holding-medical text-4xl mb-4 text-[#f19273]/85 group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Weekly Clinical Checkups</span>
-              <p class="text-xs text-white/75 uppercase tracking-wider mt-1">Medical Care</p>
-            </div>
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Professional Therapists</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Our community registered practical nurse conducts vitals scanning weekly.</p>
-            </div>
-          </div>
-
-          <!-- Box 5 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#d0633c] shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#ce5028] via-tealPrimary/30 to-tealDark opacity-95 z-10"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
-              <i class="fas fa-book-bible text-4xl mb-4 text-[#faf6f0]/85 group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Reading & Study Library</span>
-              <p class="text-xs text-white/80 uppercase tracking-wider mt-1">Theological Studies</p>
-            </div>
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Theological Study Hours</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Quiet areas stocked with scriptures, classical theology works, and historic journals.</p>
-            </div>
-          </div>
-
-          <!-- Box 6 -->
-          <div class="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-tealLight shadow-md cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-b from-tealPrimary via-tealDark to-transparent opacity-80 z-10"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center">
-              <i class="fas fa-cookie-bite text-4xl mb-4 text-[#ebd2c1] group-hover:scale-110 transition-transform duration-500"></i>
-              <span class="font-serif italic text-lg leading-snug">Community Baking Programs</span>
-              <p class="text-xs text-white/70 uppercase tracking-wider mt-1">Lay Engagement</p>
-            </div>
-            <div class="absolute inset-0 bg-terracotta/95 flex flex-col items-center justify-center p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <i class="fas fa-magnifying-glass text-2xl mb-3"></i>
-              <h4 class="font-serif text-lg font-bold">Parish Lay Baking</h4>
-              <p class="text-xs text-center mt-2 px-4 text-white/90">Parishioners partner with resident clergy to bake artisan loafs for the needy.</p>
-            </div>
-          </div>
-
+        <!-- View All Photos -->
+        <div class="text-center mt-6">
+          <button type="button" onclick="openGalleryModal()" class="inline-flex items-center gap-2 bg-tealPrimary hover:bg-tealDark text-white font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm tracking-wider uppercase">
+            <i class="fas fa-images"></i> View All Photos
+          </button>
         </div>
 
       </div>
     </section>
 
+    <!-- GALLERY: FULLSCREEN LIGHTBOX -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button type="button" onclick="closeLightbox()" aria-label="Close viewer" class="absolute top-4 right-4 md:top-6 md:right-6 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-xl transition-colors">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <button type="button" onclick="lightboxPrev(event)" aria-label="Previous photo" class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-xl transition-colors">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button type="button" onclick="lightboxNext(event)" aria-label="Next photo" class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white text-xl transition-colors">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div id="lightbox-backdrop" class="absolute inset-0 flex flex-col items-center justify-center p-4 pt-16 pb-12 md:p-16">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[72vh] md:max-h-[78vh] object-contain rounded-lg shadow-2xl select-none" />
+        <div class="mt-4 text-center text-white pointer-events-none">
+          <h4 id="lightbox-title" class="font-serif font-bold text-lg"></h4>
+          <p id="lightbox-sub" class="text-xs text-white/70 uppercase tracking-wider mt-1"></p>
+          <p id="lightbox-count" class="text-xs text-white/50 mt-2"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY: VIEW-ALL MODAL -->
+    <div id="gallery-modal" class="fixed inset-0 z-[90] hidden bg-black/80 backdrop-blur-sm">
+      <div class="absolute inset-0 overflow-y-auto">
+        <div id="gallery-modal-inner" class="min-h-full flex items-start justify-center p-4 md:p-10" onclick="if(event.target===this)closeGalleryModal()">
+          <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl my-6" role="dialog" aria-modal="true" aria-label="All photos">
+            <div class="sticky top-0 bg-white/95 backdrop-blur rounded-t-3xl flex items-center justify-between px-6 py-4 border-b border-gray-100 z-10">
+              <h3 class="font-serif font-bold text-xl text-tealPrimary">All Photos</h3>
+              <button type="button" onclick="closeGalleryModal()" aria-label="Close" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-tealPrimary text-lg transition-colors">
+                <i class="fas fa-xmark"></i>
+              </button>
+            </div>
+            <div id="gallery-modal-grid" class="columns-2 md:columns-3 gap-4 p-6 [&>*]:mb-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 10. BLOG / NEWS SECTION -->
-    <section id="blog" class="py-16 md:py-24 bg-sand">
+    <section id="blog" class="reveal py-16 md:py-24 bg-sand">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -841,7 +768,7 @@
     </section>
 
     <!-- 11. DONATE / GET INVOLVED SECTION -->
-    <section id="donate" class="py-20 md:py-24 bg-tealPrimary text-white relative overflow-hidden">
+    <section id="donate" class="reveal py-20 md:py-24 bg-tealPrimary text-white relative overflow-hidden">
       <!-- Background elegant circle designs -->
       <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-tealLight/20"></div>
       <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tealDark/30"></div>
@@ -865,9 +792,9 @@
         <div class="max-w-lg mx-auto bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 space-y-4">
           <p class="text-xs uppercase tracking-widest text-[#A8D4BE] font-bold">Select Donation Amount</p>
           <div class="grid grid-cols-4 gap-3">
-            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="10000">₦10,000</button>
+            <button class="donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="10000">₦10,000</button>
             <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="50000">₦50,000</button>
-            <button class="donation-amt-btn bg-accent text-tealDark border border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="100000">₦100,000</button>
+            <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="100000">₦100,000</button>
             <button class="donation-amt-btn bg-white/10 hover:bg-accent hover:text-tealDark border border-white/20 hover:border-transparent rounded-xl py-3 text-sm md:text-base font-bold transition-all" data-amount="custom">Other</button>
           </div>
           <div class="flex items-center space-x-2 pt-2">
@@ -888,7 +815,7 @@
     </section>
 
     <!-- 12. CONTACT SECTION -->
-    <section id="contact" class="py-16 md:py-24 bg-white">
+    <section id="contact" class="reveal py-16 md:py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -1015,7 +942,7 @@
     </section>
 
     <!-- 13. FOOTER -->
-    <footer class="bg-tealDark text-white mt-auto pt-16 pb-8 border-t border-white/5">
+    <footer class="reveal bg-tealDark text-white mt-auto pt-16 pb-8 border-t border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-white/10">
@@ -1149,59 +1076,22 @@
             </div>
 
             <form id="secure-payment-form" onsubmit="executeOfferedTransaction(event)" class="space-y-4">
-              <!-- Payment Tabs -->
-              <div class="grid grid-cols-3 gap-2 bg-sand p-1 rounded-xl text-xs font-semibold">
-                <button type="button" id="btn-pay-card" class="bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5" onclick="selectPaymentMethod('card')">
-                  <i class="fas fa-credit-card mr-1"></i> Card
-                </button>
-                <button type="button" id="btn-pay-paypal" class="text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors" onclick="selectPaymentMethod('paypal')">
-                  <i class="fab fa-paypal mr-1"></i> PayPal
-                </button>
-                <button type="button" id="btn-pay-gpay" class="text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors" onclick="selectPaymentMethod('gpay')">
-                  <i class="fab fa-google-pay text-base"></i> Pay
-                </button>
+
+              <div class="space-y-1.5">
+                <label for="payment-email" class="block text-xs font-semibold uppercase tracking-wider text-tealPrimary">Email Address *</label>
+                <input type="email" id="payment-email" required class="w-full bg-white border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent rounded-xl px-4 py-3 text-sm focus:outline-none transition-all" placeholder="name@example.com">
               </div>
 
-              <!-- Credit Card Fields -->
-              <div id="payment-card-fields" class="space-y-3">
-                <div class="relative">
-                  <label for="card-num" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Card Number</label>
-                  <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fas fa-credit-card"></i></span>
-                    <input type="text" id="card-num" class="block w-full py-2.5 pl-9 pr-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="4111 2222 3333 4444">
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                  <div>
-                    <label for="card-expiry" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Expiry Date</label>
-                    <input type="text" id="card-expiry" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="MM/YY">
-                  </div>
-                  <div>
-                    <label for="card-cvv" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">CVC / CVV</label>
-                    <input type="password" id="card-cvv" maxlength="4" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors font-mono" placeholder="•••">
-                  </div>
-                </div>
-
-                <div>
-                  <label for="card-holder" class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Cardholder Name</label>
-                  <input type="text" id="card-holder" class="block w-full py-2.5 px-3 text-sm text-tealPrimary bg-white rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" placeholder="Rev. Father John Doe">
+              <div class="bg-sand/80 rounded-2xl p-4 text-center border border-gray-100">
+                <p class="text-[11px] text-[#8c969b] uppercase tracking-wider font-semibold mb-1">You'll be redirected to</p>
+                <div class="flex items-center justify-center space-x-2">
+                  <svg class="w-5 h-5 text-tealPrimary" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  <span class="text-sm font-bold text-tealPrimary">Paystack Secure Checkout</span>
                 </div>
               </div>
 
-              <div id="payment-non-card-fields" class="hidden text-center py-6 bg-sand rounded-2xl border border-dashed border-gray-200">
-                <i class="fas fa-fingerprint text-accent text-3xl mb-2 block"></i>
-                <span class="text-xs text-charcoal/80" id="alternative-payment-desc">Sign in with Face ID or Google Account to express offerings instantly.</span>
-              </div>
-
-              <div class="flex items-center space-x-2 pt-2">
-                <input type="checkbox" id="modal-tax-receipt" checked class="rounded border-gray-300 text-accent focus:ring-accent h-4 w-4">
-                <label for="modal-tax-receipt" class="text-xs text-charcoal/70">Send me a tax-deductible offering receipt email</label>
-              </div>
-
-              <!-- Submit offerings button -->
-              <button type="submit" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all tracking-wider text-sm uppercase mt-4">
-                Complete Safe Offering
+              <button type="submit" class="w-full bg-accent hover:bg-accentDark text-tealDark font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all tracking-wider text-sm uppercase mt-2">
+                Proceed to Paystack
               </button>
             </form>
           </div>
@@ -1344,7 +1234,7 @@
       });
 
       // Quick Donation interactive button selection logic
-      let selectedDonationAmount = '100'; // Default preset value on load
+      let selectedDonationAmount = '10000'; // Default preset on load
       const amountBtns = document.querySelectorAll('.donation-amt-btn');
       
       amountBtns.forEach(btn => {
@@ -1365,8 +1255,8 @@
       });
 
       // Modal State Properties
-      let currentOfferAmount = 100;
-      let activePaymentMethod = 'card';
+      let currentOfferAmount = 10000;
+      const sessionToken = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2);
 
       function openDonationModal(amount) {
         const modal = document.getElementById('donation-modal');
@@ -1410,7 +1300,7 @@
         
         const input = document.getElementById('custom-donation-input');
         if (input) {
-          input.value = currentOfferAmount || '100';
+          input.value = '';
           input.focus();
         }
       }
@@ -1424,10 +1314,13 @@
 
       function proceedToPayment() {
         const input = document.getElementById('custom-donation-input');
-        let amount = parseFloat(input.value);
+        const amount = parseFloat(input.value);
         if (isNaN(amount) || amount <= 0) {
-          amount = 100;
+          input.focus();
+          input.classList.add('border-terracotta');
+          return;
         }
+        input.classList.remove('border-terracotta');
         setPaymentDisplay(amount);
       }
 
@@ -1441,70 +1334,42 @@
         document.getElementById('modal-step-success').classList.add('hidden');
       }
 
-      function selectPaymentMethod(type) {
-        activePaymentMethod = type;
-        const btnCard = document.getElementById('btn-pay-card');
-        const btnPaypal = document.getElementById('btn-pay-paypal');
-        const btnGpay = document.getElementById('btn-pay-gpay');
-        
-        // Reset classes
-        btnCard.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
-        btnPaypal.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
-        btnGpay.className = "text-gray-500 hover:text-tealPrimary py-2 rounded-lg transition-colors";
-        
-        const cardFields = document.getElementById('payment-card-fields');
-        const nonCardFields = document.getElementById('payment-non-card-fields');
-        
-        if (type === 'card') {
-          btnCard.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
-          cardFields.classList.remove('hidden');
-          nonCardFields.classList.add('hidden');
-          document.getElementById('card-num').setAttribute('required', 'true');
-          document.getElementById('card-expiry').setAttribute('required', 'true');
-          document.getElementById('card-cvv').setAttribute('required', 'true');
-          document.getElementById('card-holder').setAttribute('required', 'true');
-        } else {
-          cardFields.classList.add('hidden');
-          nonCardFields.classList.remove('hidden');
-          document.getElementById('card-num').removeAttribute('required');
-          document.getElementById('card-expiry').removeAttribute('required');
-          document.getElementById('card-cvv').removeAttribute('required');
-          document.getElementById('card-holder').removeAttribute('required');
-          
-          if (type === 'paypal') {
-            btnPaypal.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
-            document.getElementById('alternative-payment-desc').innerText = "Authorize security connection to PayPal wallet system on popup window.";
-          } else {
-            btnGpay.className = "bg-white text-tealPrimary py-2 rounded-lg shadow-sm border border-black/5 font-semibold";
-            document.getElementById('alternative-payment-desc').innerText = "Initiating Google / Apple One-Touch secure biometrics authorization...";
-          }
-        }
-      }
-
-      function executeOfferedTransaction(event) {
+      async function executeOfferedTransaction(event) {
         event.preventDefault();
-        
-        // Go to processing loading screen
+
+        const email = document.getElementById('payment-email').value.trim();
+        if (!email) return;
+
+        const amount = parseFloat(currentOfferAmount);
+        console.log("amount:", amount);
+
         document.getElementById('modal-step-payment').classList.add('hidden');
         document.getElementById('modal-step-processing').classList.remove('hidden');
-        
-        // Simulate real transaction processing pipeline
-        setTimeout(() => {
-          // Generate a beautiful custom offering receipt details
-          const receiptId = '#VNY-R' + Math.floor(10000 + Math.random() * 90000) + 'X';
-          const receiptDate = new Date().toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + ' UTC';
-          
-          document.getElementById('receipt-id').innerText = receiptId;
-          document.getElementById('receipt-date').innerText = receiptDate;
-          document.getElementById('receipt-amount').innerText = '₦' + parseFloat(currentOfferAmount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-          
-          // Show payment completed panel
+
+        try {
+          const res = await fetch("/api/create-donation-intent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              amount,
+              session_token: sessionToken,
+            }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.error || "Payment initialization failed");
+          }
+
+          window.location.href = data.checkout_link;
+        } catch (err) {
           document.getElementById('modal-step-processing').classList.add('hidden');
-          document.getElementById('modal-step-success').classList.remove('hidden');
-          
-          // Clear payment details input forms
-          document.getElementById('secure-payment-form').reset();
-        }, 2200);
+          document.getElementById('modal-step-payment').classList.remove('hidden');
+
+          alert("Payment error: " + err.message);
+        }
       }
 
       // Simulated internal donation button callback
@@ -1545,6 +1410,151 @@
           successNotice.classList.add('hidden');
         }, 12000);
       }
+
+      // ===== PHOTO GALLERY: lightbox + view-all modal =====
+      // First 6 appear in the main masonry grid; all 21 appear in "View All" + lightbox.
+      const galleryImages = [
+        { src: "/assets/c55e933a-dc85-4bd8-a245-207af61269e2.JPG", title: "Honoring Dedicated Service", sub: "Award Presentation" },
+        { src: "/assets/d2f3cea4-a38f-4561-95fa-5cc575a54adb.JPG", title: "Fellowship & Warm Greetings", sub: "Get-Together" },
+        { src: "/assets/4ae007ee-da8a-4379-a55c-65a1e3ebada8.JPG", title: "A Heartfelt Embrace", sub: "Reunion" },
+        { src: "/assets/8fe444b4-24e1-4711-9cf1-12136857b424.JPG", title: "Sisters Reunited", sub: "Bonds of Faith" },
+        { src: "/assets/a4f4fed8-2f59-4555-8fb2-3a58813eff2d.JPG", title: "Gathered in Joy", sub: "Religious Sisters" },
+        { src: "/assets/f322507c-248a-454b-93a7-cc4ec4cce633.JPG", title: "Cutting the Celebration Cake", sub: "Anniversary" },
+        { src: "/assets/e6d9c089-e270-4308-b0f2-f7914dc1ad5a.JPG", title: "A Word from the Bishop", sub: "Reflections" },
+        { src: "/assets/e7425eea-ec32-42c3-a457-d79e56daddf4.JPG", title: "Joyful Reunions", sub: "Shared Laughter" },
+        { src: "/assets/e8f1dd1f-ee90-40a5-9355-37801272fe41.JPG", title: "Our Community Together", sub: "Group Portrait" },
+        { src: "/assets/0d841172-098a-4daa-90ac-73140a10e2b2.JPG", title: "Walking Hand in Hand", sub: "Honoring Our Elders" },
+        { src: "/assets/359b9dc1-14a2-43cc-9ea0-ca5a773fc70e.JPG", title: "Sharing the Celebration", sub: "Cutting the Cake" },
+        { src: "/assets/70c59cd2-d2b6-42a9-bf16-9127f4303084.JPG", title: "A Moment to Celebrate", sub: "Cake Cutting" },
+        { src: "/assets/1c5e4c27-9392-4538-a6fa-1e9e723050a1.JPG", title: "With the Volunteer Team", sub: "Lay Support Group" },
+        { src: "/assets/4ae40154-c78a-47c7-add3-fb4d7fba4729.JPG", title: "Standing Together", sub: "Support Group" },
+        { src: "/assets/2449f2c8-9e13-4853-bb28-6059cb5fe116.JPG", title: "A Token of Appreciation", sub: "Recognition" },
+        { src: "/assets/5e0bda80-0210-4562-a601-9efd801931ac.JPG", title: "Side by Side in Service", sub: "Partnership" },
+        { src: "/assets/68ac2762-33c9-4ac0-951e-6a488de5df59.JPG", title: "With Our Religious Sisters", sub: "Companionship" },
+        { src: "/assets/48ea7dc5-e1ac-4dca-8d19-83524c4f029e.JPG", title: "A Warm Welcome", sub: "Greetings" },
+        { src: "/assets/3df0742d-bd1d-4fef-bbde-6ede37cce66e.JPG", title: "Conversations & Connection", sub: "Get-Together" },
+        { src: "/assets/b6d4bbb3-c3f6-4814-a0d1-ddd8fd4aa3b2.JPG", title: "Stories Shared", sub: "Fellowship" },
+        { src: "/assets/b253c8fc-241d-4cea-a40f-196783d3f271.JPG", title: "A Life of Service", sub: "Senior Clergy" }
+      ];
+      const GALLERY_PREVIEW_COUNT = 6;
+      let lightboxIndex = 0;
+
+      function escAttr(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
+
+      // Build the main masonry preview grid (first 6 photos)
+      function renderGalleryGrid() {
+        const grid = document.getElementById('gallery-grid');
+        if (!grid) return;
+        grid.innerHTML = galleryImages.slice(0, GALLERY_PREVIEW_COUNT).map(function(it, idx) {
+          return '<button type="button" onclick="openLightbox(' + idx + ')" class="gallery-item group relative block w-full break-inside-avoid rounded-2xl overflow-hidden shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2">' +
+              '<img src="' + it.src + '" alt="' + escAttr(it.title) + '" loading="lazy" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />' +
+              '<div class="absolute inset-0 bg-gradient-to-t from-tealDark/80 via-tealDark/10 to-transparent"></div>' +
+              '<div class="absolute inset-x-0 bottom-0 p-4 text-left">' +
+                '<h4 class="font-serif font-bold text-white text-base leading-snug">' + escAttr(it.title) + '</h4>' +
+                '<p class="text-[11px] text-white/80 uppercase tracking-wider mt-0.5">' + escAttr(it.sub) + '</p>' +
+              '</div>' +
+              '<div class="absolute inset-0 flex items-center justify-center bg-terracotta/0 group-hover:bg-terracotta/30 transition-colors duration-300">' +
+                '<i class="fas fa-magnifying-glass text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>' +
+              '</div>' +
+            '</button>';
+        }).join('');
+      }
+      document.addEventListener('DOMContentLoaded', renderGalleryGrid);
+
+      function renderLightbox() {
+        const item = galleryImages[lightboxIndex];
+        const img = document.getElementById('lightbox-img');
+        img.src = item.src;
+        img.alt = item.title;
+        document.getElementById('lightbox-title').textContent = item.title;
+        document.getElementById('lightbox-sub').textContent = item.sub;
+        document.getElementById('lightbox-count').textContent = (lightboxIndex + 1) + ' / ' + galleryImages.length;
+      }
+      function openLightbox(i) {
+        lightboxIndex = i;
+        renderLightbox();
+        document.getElementById('lightbox').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.add('hidden');
+        if (document.getElementById('gallery-modal').classList.contains('hidden')) {
+          document.body.style.overflow = '';
+        }
+      }
+      function lightboxNext(e) { if (e) e.stopPropagation(); lightboxIndex = (lightboxIndex + 1) % galleryImages.length; renderLightbox(); }
+      function lightboxPrev(e) { if (e) e.stopPropagation(); lightboxIndex = (lightboxIndex - 1 + galleryImages.length) % galleryImages.length; renderLightbox(); }
+
+      function openGalleryModal() {
+        const grid = document.getElementById('gallery-modal-grid');
+        if (!grid.dataset.built) {
+          grid.innerHTML = galleryImages.map(function(it, idx) {
+            return '<button type="button" onclick="openLightbox(' + idx + ')" class="group relative block w-full break-inside-avoid rounded-xl overflow-hidden shadow focus:outline-none focus:ring-2 focus:ring-terracotta">' +
+              '<img src="' + it.src + '" alt="' + escAttr(it.title) + '" loading="lazy" class="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105" />' +
+              '<div class="absolute inset-0 bg-gradient-to-t from-tealDark/75 via-transparent to-transparent"></div>' +
+              '<div class="absolute inset-x-0 bottom-0 p-3 text-left">' +
+                '<h4 class="font-serif font-bold text-white text-sm leading-snug">' + escAttr(it.title) + '</h4>' +
+                '<p class="text-[10px] text-white/80 uppercase tracking-wider mt-0.5">' + escAttr(it.sub) + '</p>' +
+              '</div>' +
+            '</button>';
+          }).join('');
+          grid.dataset.built = '1';
+        }
+        document.getElementById('gallery-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeGalleryModal() {
+        document.getElementById('gallery-modal').classList.add('hidden');
+        if (document.getElementById('lightbox').classList.contains('hidden')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Keyboard controls
+      document.addEventListener('keydown', function(e) {
+        const lightboxOpen = !document.getElementById('lightbox').classList.contains('hidden');
+        const modalOpen = !document.getElementById('gallery-modal').classList.contains('hidden');
+        if (lightboxOpen) {
+          if (e.key === 'Escape') closeLightbox();
+          else if (e.key === 'ArrowRight') lightboxNext();
+          else if (e.key === 'ArrowLeft') lightboxPrev();
+        } else if (modalOpen && e.key === 'Escape') {
+          closeGalleryModal();
+        }
+      });
+
+      // Touch swipe navigation for the lightbox
+      (function() {
+        const lb = document.getElementById('lightbox');
+        let startX = 0, startY = 0;
+        lb.addEventListener('touchstart', function(e) {
+          startX = e.changedTouches[0].clientX;
+          startY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        lb.addEventListener('touchend', function(e) {
+          const dx = e.changedTouches[0].clientX - startX;
+          const dy = e.changedTouches[0].clientY - startY;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) lightboxNext(); else lightboxPrev();
+          }
+        }, { passive: true });
+      })();
+
+      // ===== Motion: scroll reveal =====
+      (function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+          observer.observe(el);
+        });
+      })();
+
     </script>
   </body>
 </html>
