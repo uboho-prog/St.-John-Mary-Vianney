@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found — St. John Mary Vianney Group</title>
+    <link rel="icon" type="image/png" href="/assets/asset.png" />
+    <link rel="apple-touch-icon" href="/assets/asset.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              tealPrimary: '#1a4a5c',
+              tealDark: '#123441',
+              tealLight: '#286a83',
+              terracotta: '#e8714a',
+              terracottaDark: '#ce5028',
+              sand: '#faf6f0',
+              charcoal: '#2c3539',
+              accent: '#A8D4BE',
+              accentDark: '#8ebd9b',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      .floaty { animation: floaty 5s ease-in-out infinite; }
+    </style>
+  </head>
+  <body class="font-sans bg-gradient-to-br from-sand via-white to-[#eef1f4] text-charcoal min-h-screen flex items-center justify-center p-5 overflow-hidden">
+
+    <!-- soft decorative glows -->
+    <div class="pointer-events-none fixed -top-24 -right-24 w-96 h-96 rounded-full bg-accent/20 blur-3xl"></div>
+    <div class="pointer-events-none fixed -bottom-24 -left-24 w-96 h-96 rounded-full bg-terracotta/10 blur-3xl"></div>
+
+    <main class="relative max-w-lg w-full text-center space-y-8">
+
+      <!-- emblem -->
+      <div class="floaty inline-flex items-center justify-center w-20 h-20 rounded-full bg-terracotta/10 text-terracotta shadow-inner mx-auto">
+        <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M50 85 C50 85, 20 62, 20 40 C20 22, 34 10, 50 25 C66 10, 80 22, 80 40 C80 62, 50 85, 50 85 Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round" fill="none" />
+          <path d="M50 30 L50 65 M38 43 L62 43" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- 404 -->
+      <div class="space-y-3">
+        <p class="text-terracotta uppercase tracking-[0.3em] font-semibold text-xs md:text-sm">Lost, but never forgotten</p>
+        <h1 class="font-serif font-bold text-tealPrimary leading-none text-7xl sm:text-8xl tracking-tight">404</h1>
+        <h2 class="font-serif font-semibold text-tealPrimary text-2xl sm:text-3xl">This path has wandered off</h2>
+      </div>
+
+      <p class="text-charcoal/70 text-base md:text-lg leading-relaxed max-w-md mx-auto">
+        The page you were seeking isn't here, perhaps it has moved on to a quieter place.
+        Like the shepherd who goes after the one, let us walk you back home.
+      </p>
+
+      <!-- actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <a href="/" class="inline-flex items-center gap-2 bg-tealPrimary hover:bg-tealDark text-white font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm tracking-wider uppercase">
+          <i class="fas fa-house"></i> Return Home
+        </a>
+        <a href="/#donate" class="inline-flex items-center gap-2 border-2 border-terracotta text-terracotta hover:bg-terracotta hover:text-white font-bold px-8 py-3 rounded-full transition-all duration-300 text-sm tracking-wider uppercase">
+          <i class="fas fa-hand-holding-heart"></i> Support Our Mission
+        </a>
+      </div>
+
+      <!-- footer line -->
+      <div class="pt-6 flex items-center justify-center gap-2 text-[#8c969b]">
+        <img src="/assets/asset.png" alt="" class="w-6 h-6 rounded-full object-cover opacity-80" />
+        <span class="font-serif text-sm tracking-tight">St. John Mary Vianney Group — Caring for those who served</span>
+      </div>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donations — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    } 
+    .login-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 1rem;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .login-card h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #0f3b3e;
+      margin-bottom: 0.5rem;
+    }
+    .login-card p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .login-card form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .login-card input {
+      padding: 0.75rem 1rem;
+      border: 1px solid #d4d4d0;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .login-card input:focus {
+      border-color: #0f3b3e;
+    }
+    .login-card button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: #0f3b3e;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-card button:hover { background: #1a5a5e; }
+    .login-card .error {
+      color: #b91c1c;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .login-card .error.visible { display: block; }
+
+    .dashboard { display: none; width: 100%; max-width: 1200px; padding: 2rem 1rem; }
+    .dashboard.visible { display: block; }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .dashboard-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: #0f3b3e;
+    }
+    .dashboard-header button {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid #0f3b3e;
+      border-radius: 8px;
+      background: transparent;
+      color: #0f3b3e;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dashboard-header button:hover {
+      background: #0f3b3e;
+      color: #fff;
+    }
+
+    .table-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead { background: #f9f9f5; }
+    th {
+      padding: 0.875rem 1rem;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #666;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    th:hover { color: #0f3b3e; }
+    th .sort-icon { display: inline-block; width: 1em; margin-left: 0.25rem; color: #aaa; }
+    th.active .sort-icon { color: #0f3b3e; }
+    td {
+      padding: 0.875rem 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #e8e8e0;
+    }
+    tr:hover td { background: #fafaf6; }
+    .amount-cell { font-variant-numeric: tabular-nums; text-align: right; }
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .status-success { background: #e6f7e6; color: #166534; }
+    .status-failed { background: #fee2e2; color: #991b1b; }
+    .ref-cell { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; color: #666; }
+    .date-cell { white-space: nowrap; color: #555; }
+    .empty-state {
+      padding: 3rem;
+      text-align: center;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="login-wrapper" id="loginWrapper">
+  <div class="login-card">
+    <h1>St. John Mary Vianney</h1>
+    <p>Admin Dashboard</p>
+    <form id="loginForm">
+      <input type="password" id="passwordInput" placeholder="Enter admin password" autocomplete="current-password">
+      <p class="error" id="loginError">Incorrect password</p>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard" id="dashboard">
+  <div class="dashboard-header">
+    <h1>Donation Records</h1>
+    <button id="logoutBtn">Sign Out</button>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th class="amount-cell sortable" data-sort="amount">
+            Amount <span class="sort-icon" id="amountIcon">↓</span>
+          </th>
+          <th>Reference</th>
+          <th>Status</th>
+          <th class="sortable active" data-sort="created_at">
+            Date <span class="sort-icon" id="dateIcon">↓</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="donationsBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState">No donations recorded yet.</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sortBy = 'created_at';
+  var sortDir = 'desc';
+
+  var loginWrapper = document.getElementById('loginWrapper');
+  var dashboard = document.getElementById('dashboard');
+  var loginForm = document.getElementById('loginForm');
+  var passwordInput = document.getElementById('passwordInput');
+  var loginError = document.getElementById('loginError');
+  var logoutBtn = document.getElementById('logoutBtn');
+  var donationsBody = document.getElementById('donationsBody');
+  var emptyState = document.getElementById('emptyState');
+  var dateIcon = document.getElementById('dateIcon');
+  var amountIcon = document.getElementById('amountIcon');
+
+  function checkAuth() {
+    fetch('/api/admin/check')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.authenticated) {
+          loginWrapper.style.display = 'none';
+          dashboard.classList.add('visible');
+          loadDonations();
+        } else {
+          loginWrapper.style.display = 'flex';
+          dashboard.classList.remove('visible');
+        }
+      });
+  }
+
+  function loadDonations() {
+    fetch('/api/admin/donations?sort=' + sortBy + '&dir=' + sortDir)
+      .then(function(r) {
+        if (r.status === 401) {
+          checkAuth();
+          return;
+        }
+        return r.json();
+      })
+      .then(function(rows) {
+        if (!rows) return;
+        renderTable(rows);
+      });
+  }
+
+  function renderTable(rows) {
+    donationsBody.innerHTML = '';
+    if (!rows || rows.length === 0) {
+      emptyState.style.display = 'block';
+      return;
+    }
+    emptyState.style.display = 'none';
+
+    rows.forEach(function(row) {
+      var tr = document.createElement('tr');
+
+      var emailTd = document.createElement('td');
+      emailTd.textContent = row.email;
+      tr.appendChild(emailTd);
+
+      var amountTd = document.createElement('td');
+      amountTd.className = 'amount-cell';
+      amountTd.textContent = '\u20A6' + (row.amount / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      tr.appendChild(amountTd);
+
+      var refTd = document.createElement('td');
+      refTd.className = 'ref-cell';
+      refTd.textContent = row.reference;
+      tr.appendChild(refTd);
+
+      var statusTd = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'status-badge status-' + (row.status === 'success' ? 'success' : 'failed');
+      badge.textContent = row.status;
+      statusTd.appendChild(badge);
+      tr.appendChild(statusTd);
+
+      var dateTd = document.createElement('td');
+      dateTd.className = 'date-cell';
+      var d = new Date(row.created_at + (row.created_at.includes('T') ? '' : 'T00:00:00Z'));
+      dateTd.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      tr.appendChild(dateTd);
+
+      donationsBody.appendChild(tr);
+    });
+  }
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    loginError.classList.remove('visible');
+    fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: passwordInput.value }),
+    }).then(function(r) {
+      if (r.ok) {
+        passwordInput.value = '';
+        checkAuth();
+      } else {
+        loginError.classList.add('visible');
+      }
+    });
+  });
+
+  logoutBtn.addEventListener('click', function() {
+    fetch('/api/admin/logout', { method: 'POST' })
+      .then(function() { checkAuth(); });
+  });
+
+  document.querySelectorAll('.sortable').forEach(function(th) {
+    th.addEventListener('click', function() {
+      var key = th.getAttribute('data-sort');
+      if (sortBy === key) {
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortBy = key;
+        sortDir = key === 'amount' ? 'desc' : 'desc';
+      }
+
+      document.querySelectorAll('.sortable').forEach(function(s) { s.classList.remove('active'); });
+      th.classList.add('active');
+
+      var arrow = sortDir === 'desc' ? '\u2193' : '\u2191';
+      dateIcon.textContent = sortBy === 'created_at' ? arrow : '\u2193';
+      amountIcon.textContent = sortBy === 'amount' ? arrow : '\u2193';
+
+      loadDonations();
+    });
+  });
+
+  checkAuth();
+})();
+</script>
+</body>
+</html>

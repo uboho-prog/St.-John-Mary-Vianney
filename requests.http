@@ -1,0 +1,71 @@
+# Payment gateway API — manual test requests
+# Use with the VS Code "REST Client" extension (humao.rest-client):
+# click "Send Request" above any block. Or copy the curl equivalents below.
+#
+# Prereqs:
+#   1. cp .env.example .env  and set PAYSTACK_SECRET_KEY="sk_test_xxxxx" (TEST key)
+#   2. npm run start:server   ->  "Server running on port 4000"
+
+@base = http://localhost:4000
+@email = test@example.com
+# Capture a reference here after a real test checkout to verify it below:
+@reference = REPLACE_WITH_PAYSTACK_REFERENCE
+
+
+### Health check (GET) — no Paystack key required
+GET {{base}}/api/health
+
+
+### Create donation intent (POST) — happy path, returns { checkout_link }
+# amount is in NAIRA (server multiplies by 100 to kobo). Min ₦1.
+POST {{base}}/api/create-donation-intent
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "amount": 500,
+  "session_token": "sess_local_1"
+}
+
+
+### Create donation intent — missing fields (expect 400, no key needed)
+POST {{base}}/api/create-donation-intent
+Content-Type: application/json
+
+{
+  "email": "{{email}}"
+}
+
+
+### Create donation intent — invalid amount (expect 400)
+POST {{base}}/api/create-donation-intent
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "amount": -10,
+  "session_token": "sess_local_1"
+}
+
+
+### Verify donation (GET) — needs a real reference from a completed test checkout
+GET {{base}}/api/verify-donation?reference={{reference}}
+
+
+### Verify donation — missing reference (expect 400)
+GET {{base}}/api/verify-donation
+
+
+# ---------------------------------------------------------------------------
+# curl equivalents (run in a terminal):
+#
+#   curl -i http://localhost:4000/api/health
+#
+#   curl -i -X POST http://localhost:4000/api/create-donation-intent \
+#     -H "Content-Type: application/json" \
+#     -d '{"email":"test@example.com","amount":500,"session_token":"sess_local_1"}'
+#
+#   curl -i "http://localhost:4000/api/verify-donation?reference=YOUR_REF"
+#
+# Paystack test card: 4084 0840 8408 4081 — any future expiry, any CVV, OTP 123456
+# ---------------------------------------------------------------------------
