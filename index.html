@@ -158,7 +158,97 @@
         color: #1a4a5c;
         font-weight: 300;
       }
-    </style>
+    
+      /* ===== RESTORED: blog + event detail-view styling (recovered from Ub-changes) ===== */
+      /* Blog detail view overrides to match main site theme */
+      #post-detail-view {
+        background-color: var(--color-sand);
+        font-family: var(--font-sans);
+        color: var(--color-charcoal, #2c3539);
+      }
+
+      /* Hero overlay should use the site's dark teal tint (matches navbar/cards) */
+      #post-hero > .hero-overlay {
+        background-color: rgba(18,52,65,0.55); /* using exact --color-tealDark */
+      }
+
+      /* Category badge: terracotta background and matching typography */
+      #post-category .inline-block {
+        background-color: var(--color-terracotta) !important;
+        color: white !important;
+      }
+
+      /* Post meta (date, author) should use mint green accent */
+      #post-meta-left, #post-meta-left span { color: var(--color-accent) !important; }
+
+      /* Back button hover uses mint green */
+      #post-back-btn:hover {
+        background-color: var(--color-accent) !important;
+        color: #ffffff !important;
+        border-color: rgba(0,0,0,0.03) !important;
+      }
+
+      /* Related posts heading underline in dark teal */
+      #related-posts h3 {
+        display: inline-block;
+        padding-bottom: 8px;
+        border-bottom: 4px solid var(--color-tealDark);
+      }
+
+      /* Make related cards match main blog/news card styling (shadow, radius, hover lift) */
+      #related-list .rounded-2xl {
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease;
+      }
+      #related-list .rounded-2xl:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(28, 47, 52, 0.08);
+      }
+
+      /* Read more arrow links color - terracotta */
+      #related-list a, #related-list a .fa-arrow-right {
+        color: var(--color-terracotta) !important;
+      }
+
+      /* Ensure headings use the serif font like the main site */
+      #post-detail-view h1, #post-detail-view h2, #post-detail-view h3, #post-detail-view h4 {
+        font-family: var(--font-serif) !important;
+      }
+
+      /* Event detail view styling */
+      :root { --event-mint: #6BAF92; --event-heading: #2C4A3E; }
+
+      #event-detail-view {
+        background-color: #FAFAF6; /* page background */
+        color: var(--event-heading);
+        font-family: var(--font-sans);
+        border-top: 4px solid var(--event-mint);
+      }
+
+      #event-hero > .event-hero-overlay {
+        background-color: rgba(44,74,62,0.60);
+      }
+
+      /* Event meta mint green */
+      .event-meta { color: var(--event-mint); }
+
+      /* Register button terracotta */
+      .event-register-btn { background-color: var(--color-terracotta); color: white; }
+
+      /* Event description container */
+      #event-description { background: #FAFAF6; color: #2C4A3E; line-height: 1.9; }
+
+      /* Form inputs */
+      #event-register-form input, #event-register-form textarea, #event-register-form select {
+        border: 1px solid #E8E8DE; border-radius: 8px; padding: 12px;
+      }
+      #event-register-form input:focus, #event-register-form textarea:focus {
+        outline: none; border-color: var(--event-mint); box-shadow: 0 0 0 3px rgba(107,175,146,0.08);
+      }
+
+      /* Register heading underline mint */
+      #event-register-heading { display: inline-block; border-bottom: 4px solid var(--event-mint); }
+
+</style>
   </head>
   <body class="font-sans bg-sand text-charcoal flex flex-col min-h-screen">
 
