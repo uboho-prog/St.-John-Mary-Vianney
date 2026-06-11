@@ -1702,6 +1702,376 @@
         });
       })();
 
-    </script>
+    
+      // ===== RESTORED: blog + event detail system (recovered from Ub-changes) =====
+      const posts = [
+        {
+          id: 'blog-post-1',
+          title: 'Restoring Dignity: A Day in the Life of Father Joseph',
+          date: 'June 8, 2026',
+          author: 'Father Emmanuel',
+          category: 'Feature Story',
+          excerpt: 'Find out how St. Vianney group took Father Joseph from a drafty single room to a nursing-supported group home.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'Father Joseph spent decades serving communities overseas. Now, in his later years, compassionate lay volunteers and medical support have restored the dignity of his daily life through consistent caregiving, respectful companionship, and routine access to clinical resources.',
+            'At St. John Mary Vianney, practical needs are matched with spiritual care. Residents like Father Joseph attend daily prayer, share meals with volunteers, and receive on-site nursing visits—helping them remain active members of parish life and maintain their sacramental routines.',
+            'This feature follows a day in Father Joseph\'s life: morning spiritual exercises, a mid-day physiotherapy session, and evening reflections with fellow residents. The program emphasizes personal agency, medical dignity, and community reintegration for elderly clergy.'
+          ]
+        },
+        {
+          id: 'blog-post-2',
+          title: 'Our New Cottage Medical Wing Construction Begins',
+          date: 'May 24, 2026',
+          author: 'Administration',
+          category: 'Organization',
+          excerpt: 'We have broken ground on a dedicated physio rehabilitation alcove to support wheelchair exercises and therapy.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'The new medical wing will provide rehabilitation equipment, a physiotherapy area, and private consultation spaces where retired clergy can receive targeted mobility support and chronic-condition management.',
+            'Local donors and diocesan grants made the project possible. The wing is designed for accessibility, privacy, and integrated pastoral support so residents can remain spiritually nourished while receiving medical attention.',
+            'Construction includes community spaces for group therapy, a small chapel for private prayer, and exterior walking paths to encourage gentle daily exercise among residents.'
+          ]
+        },
+        {
+          id: 'blog-post-3',
+          title: 'Parish Diocesan Grants Support Core Food Mission',
+          date: 'April 12, 2026',
+          author: 'Fundraising',
+          category: 'Community Grant',
+          excerpt: 'A matching grant ensures our pantry remains loaded with healthy organic produce for the rest of 2026.',
+          coverImage: '/assets/asset.png',
+          bodyContent: [
+            'Reliable nutrition is foundational to elderly care. Our grant funding secures fresh produce, dietary planning, and meal delivery services tailored for older clergy with specific needs.',
+            'Volunteers coordinate weekly menus with medical staff to ensure balanced diets that support chronic-condition management and medication interaction safety.',
+            'Community kitchens also become moments of social interaction—residents share stories as they prepare communal meals, reinforcing dignity, memory, and joy.'
+          ]
+        }
+      ];
+
+      let _savedScrollY = 0;
+
+      function populatePostView(post) {
+        const hero = document.getElementById('post-hero');
+        const title = document.getElementById('post-title');
+        const metaLeft = document.getElementById('post-meta-left');
+        const categoryEl = document.getElementById('post-category');
+        const body = document.getElementById('post-body');
+
+        // Hero background (fallback gradient if image missing)
+        if (post.coverImage) {
+          hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('${post.coverImage}')`;
+        } else {
+          hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), linear-gradient(135deg,#123441,#286a83)`;
+        }
+
+        title.textContent = post.title;
+        metaLeft.innerHTML = `<span class="text-sm text-slate-500 mr-3">${post.date}</span><span class="text-sm text-slate-500">by ${post.author}</span>`;
+        categoryEl.innerHTML = `<span class="inline-block bg-tealPrimary text-white text-xs font-semibold px-3 py-1 rounded-full">${post.category}</span>`;
+
+        // Body paragraphs
+        body.innerHTML = '';
+        post.bodyContent.forEach(p => {
+          const pEl = document.createElement('p');
+          pEl.className = 'mb-4 text-sm leading-relaxed';
+          pEl.textContent = p;
+          body.appendChild(pEl);
+        });
+
+        renderRelatedPosts(post.id);
+      }
+
+      function openPost(id) {
+        const post = posts.find(p => p.id === id);
+        if (!post) return;
+
+        // if already open, skip
+        const view = document.getElementById('post-detail-view');
+        if (!view.classList.contains('hidden') && location.hash === `#${id}`) return;
+
+        _savedScrollY = window.scrollY || document.documentElement.scrollTop;
+        document.getElementById('site-main').classList.add('hidden');
+        view.classList.remove('hidden');
+        // Ensure the post view content starts below the sticky navbar.
+        // Calculate header height at runtime and add 16px breathing room.
+        const header = document.getElementById('main-navigation');
+        const headerHeight = header ? header.offsetHeight : 80; // fallback
+        view.style.paddingTop = (headerHeight + 16) + 'px';
+
+        // Pause scroll-spy and explicitly set the Blog nav link active
+        scrollSpyEnabled = false;
+        setActiveNavByHash('#blog');
+        populatePostView(post);
+        // update hash (this enables back-button navigation)
+        if (location.hash !== `#${id}`) {
+          history.pushState(null, '', `#${id}`);
+        }
+        // ensure at top of post
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      function closePost() {
+        const view = document.getElementById('post-detail-view');
+        if (view.classList.contains('hidden')) return;
+
+        view.classList.add('hidden');
+        document.getElementById('site-main').classList.remove('hidden');
+
+        // remove any top padding we set when opening
+        view.style.paddingTop = '';
+
+        // re-enable scroll-spy and recalculate active nav
+        scrollSpyEnabled = true;
+        // Update nav state to reflect the current scroll position on the main page
+        setTimeout(() => {
+          updateActiveNavFromScroll();
+        }, 30);
+
+        // restore previous scroll position
+        window.scrollTo({ top: _savedScrollY || 0, behavior: 'auto' });
+
+        // remove hash without adding history entry
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+
+      function renderRelatedPosts(currentId) {
+        const container = document.getElementById('related-list');
+        container.innerHTML = '';
+
+        posts.filter(p => p.id !== currentId).forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col justify-between';
+
+          const inner = `
+            <div>
+              <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">${p.date}</span>
+              <h4 class="font-serif font-bold text-tealPrimary mt-2 mb-2 text-lg">${p.title}</h4>
+              <p class="text-sm text-charcoal/70 line-clamp-3">${p.excerpt}</p>
+            </div>
+            <div class="pt-4">
+              <a href="#${p.id}" onclick="openPost('${p.id}'); return false;" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center">
+                Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
+              </a>
+            </div>
+          `;
+
+          card.innerHTML = inner;
+          container.appendChild(card);
+        });
+      }
+
+      // Respond to back/forward navigation
+      window.addEventListener('hashchange', () => {
+        const hash = location.hash.replace('#', '');
+        if (!hash) {
+          // no hash -> close post view
+          closePost();
+        } else {
+          // if hash matches a post id, open it
+          const postExists = posts.some(p => p.id === hash);
+          if (postExists) openPost(hash);
+        }
+      });
+
+      // Wire up plain links and auto-open on load if hash points to a post
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[data-post-id]').forEach(a => {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = a.getAttribute('data-post-id');
+            openPost(id);
+          });
+        });
+
+        // On first load, if hash references a post, open it
+        const initialHash = location.hash.replace('#', '');
+        if (initialHash && posts.some(p => p.id === initialHash)) {
+          openPost(initialHash);
+        }
+      });
+
+      /* EVENT DETAIL SYSTEM (single-file) */
+      const events = [
+        {
+          id: 'event-1',
+          title: 'Annual Feast Day & Liturgical Gala Dinner',
+          date: 'June 24, 2026',
+          month: 'Jun',
+          day: '24',
+          time: '4:00 PM - 8:30 PM',
+          location: 'Main Cathedral Hall',
+          description: [
+            'Join our Annual Feast Day for an evening of solemn liturgy followed by a community banquet. Proceeds support winter fuel and resident care programs for elderly clergy.',
+            'The evening includes traditional Tridentine and Novus Ordo celebrations, followed by a fundraising dinner with guest speakers and testimonials from resident priests.',
+            'Tickets and table sponsorships support ongoing medical and housing needs; volunteers coordinate seating and dietary accommodations to ensure every guest is welcomed.'
+          ],
+          image: '/assets/asset.png'
+        },
+        {
+          id: 'event-2',
+          title: 'Senior Clergy Annual Health & Fitness Drive',
+          date: 'July 15, 2026',
+          month: 'Jul',
+          day: '15',
+          time: '9:00 AM - 3:00 PM',
+          location: 'Vianney Cottage Base',
+          description: [
+            'A collaborative voluntary health day offering medical testing, physiotherapy sessions, and wellness consultations specifically tailored for retired clergy.',
+            'Licensed professionals and nursing practitioners provide mobility assessments and personalized care plans to help residents maintain well-being and independence.',
+            'The day also includes gentle group exercises and nutrition workshops to support long-term health outcomes for participants.'
+          ],
+          image: '/assets/asset.png'
+        },
+        {
+          id: 'event-3',
+          title: 'Parish Family Picnic & Sharing Circle',
+          date: 'August 8, 2026',
+          month: 'Aug',
+          day: '08',
+          time: '12:00 PM - 4:00 PM',
+          location: 'Garden Groves, Vianney Home',
+          description: [
+            'An open-air picnic in the garden groves invites parishioners and children to spend relaxed afternoons listening to our elderly fathers share inspiring mission stories.',
+            'Families and volunteers bring dishes for communal sharing, while residents enjoy recreational activities and gentle outdoor exercise in our serene grounds.',
+            'This gathering strengthens community bonds and supports our food mission, with proceeds used for pantry supplies and resident nutritional needs.'
+          ],
+          image: '/assets/asset.png'
+        }
+      ];
+
+      function populateEventView(ev) {
+        const hero = document.getElementById('event-hero');
+        const title = document.getElementById('event-title');
+        const heroMonth = document.getElementById('event-hero-month');
+        const heroDay = document.getElementById('event-hero-day');
+        const datetime = document.getElementById('event-datetime');
+        const location = document.getElementById('event-location');
+        const desc = document.getElementById('event-desc-content');
+
+        hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('${ev.image}')`;
+        title.textContent = ev.title;
+        heroMonth.textContent = ev.month;
+        heroDay.textContent = ev.day;
+        datetime.textContent = `${ev.date} • ${ev.time}`;
+        location.textContent = ev.location;
+
+        desc.innerHTML = '';
+        ev.description.forEach(p => {
+          const pEl = document.createElement('p');
+          pEl.className = 'mb-4';
+          pEl.textContent = p;
+          desc.appendChild(pEl);
+        });
+
+        renderOtherEvents(ev.id);
+      }
+
+      let _savedScrollY_event = 0;
+
+      function openEvent(id) {
+        const ev = events.find(e => e.id === id);
+        if (!ev) return;
+        const view = document.getElementById('event-detail-view');
+        if (!view.classList.contains('hidden') && location.hash === `#${id}`) return;
+
+        _savedScrollY_event = window.scrollY || document.documentElement.scrollTop;
+        document.getElementById('site-main').classList.add('hidden');
+        view.classList.remove('hidden');
+        // top spacing below navbar
+        const header = document.getElementById('main-navigation');
+        const headerHeight = header ? header.offsetHeight : 80;
+        view.style.paddingTop = (headerHeight + 16) + 'px';
+
+        // pause scroll-spy and set Events nav active
+        scrollSpyEnabled = false;
+        setActiveNavByHash('#events');
+
+        populateEventView(ev);
+        if (location.hash !== `#${id}`) history.pushState(null, '', `#${id}`);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      function closeEvent() {
+        const view = document.getElementById('event-detail-view');
+        if (view.classList.contains('hidden')) return;
+        view.classList.add('hidden');
+        document.getElementById('site-main').classList.remove('hidden');
+        view.style.paddingTop = '';
+
+        // re-enable scroll-spy and recalc nav
+        scrollSpyEnabled = true;
+        setTimeout(() => updateActiveNavFromScroll(), 30);
+
+        window.scrollTo({ top: _savedScrollY_event || 0, behavior: 'auto' });
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+
+      function renderOtherEvents(currentId) {
+        const container = document.getElementById('other-events-list');
+        container.innerHTML = '';
+        events.filter(e => e.id !== currentId).forEach(e => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all-300 border border-gray-100 flex flex-col justify-between p-4';
+          card.innerHTML = `
+            <div>
+              <div class="inline-flex items-center bg-terracotta/10 text-terracotta rounded-2xl px-3 py-2 mb-3">
+                <span class="text-xs font-bold">${e.month}</span>
+                <span class="ml-2 text-2xl font-serif font-bold">${e.day}</span>
+              </div>
+              <h4 class="font-serif font-bold text-tealPrimary text-lg mb-2">${e.title}</h4>
+              <p class="text-sm text-charcoal/70">${e.description[0]}</p>
+            </div>
+            <div class="pt-4">
+              <a href="#${e.id}" onclick="openEvent('${e.id}'); return false;" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center">Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i></a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // Event form handling
+      function handleEventRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('evt-name').value.trim();
+        const phone = document.getElementById('evt-phone').value.trim();
+        const attendees = parseInt(document.getElementById('evt-attendees').value, 10) || 1;
+
+        if (!name || !phone || attendees < 1) {
+          alert('Please complete required fields (Name, WhatsApp Number, Attendees).');
+          return;
+        }
+
+        // Simulate success
+        document.getElementById('event-register-form').classList.add('hidden');
+        document.getElementById('evt-thanks').classList.remove('hidden');
+      }
+
+      // Wire event links and check hash on load for events
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[data-event-id]').forEach(a => {
+          a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            openEvent(a.getAttribute('data-event-id'));
+          });
+        });
+
+        const initialHash2 = location.hash.replace('#', '');
+        if (initialHash2 && events.some(ev => ev.id === initialHash2)) {
+          openEvent(initialHash2);
+        }
+      });
+
+      // Listen for hash changes for events
+      window.addEventListener('hashchange', () => {
+        const hash = location.hash.replace('#', '');
+        if (!hash) {
+          closeEvent();
+        } else {
+          const evExists = events.some(ev => ev.id === hash);
+          if (evExists) openEvent(hash);
+        }
+      });
+
+</script>
   </body>
 </html>
