@@ -44,6 +44,18 @@
     </script>
     
     <style>
+      /* Reuse exact theme colors from Tailwind config as CSS variables for precise reuse */
+      :root {
+        --color-tealPrimary: #1a4a5c;
+        --color-tealDark: #123441;
+        --color-tealLight: #286a83;
+        --color-terracotta: #e8714a;
+        --color-terracottaLight: #f19273;
+        --color-sand: #faf6f0;
+        --color-accent: #A8D4BE; /* mint green */
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+      }
       html {
         scroll-behavior: smooth;
       }
@@ -217,6 +229,8 @@
       </div>
     </header>
 
+    <main id="site-main">
+
     <!-- 3. HERO SECTION -->
     <section id="home" class="relative w-full bg-[#FFF8F0] lg:h-[700px] lg:overflow-hidden">
 
@@ -314,7 +328,7 @@
           <!-- Logo 1: Diocese description -->
           <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
             <i class="fas fa-church text-xl text-tealPrimary"></i>
-            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Mercy</span>
+            <span class="font-serif font-semibold text-xs tracking-wider uppercase">Archdiocese of Lagos</span>
           </div>
           <!-- Logo 2 -->
           <div class="flex items-center justify-center text-center space-x-2 grayscale hover:grayscale-0 transition-all duration-300">
@@ -357,7 +371,7 @@
         </h2>
         
         <p class="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-16">
-          When religious and diocesan clergy reach their final chapters, many uncover a difficult reality: having never married or accumulated personal wealth due to vows of poverty and lifetimes of service, they can easily find themselves without a safety net or family caretakers. St. John Mary Vianney provides fully structured housing facilities, clinical healthcare programs, and continuous lay-parishioner companionship so that they can conclude their earthly journeys in safety, prayerful community, and peace.
+          When religious and diocesan clergy reach their final chapters, many uncover a difficult reality: having never married or accumulated personal wealth due to vows of poverty and lifetimes of service, they can easily find themselves without a safety net or family caretakers. St. John Mary Vianney Group provides fully structured housing facilities, clinical healthcare programs, and continuous lay-parishioner companionship so that they can conclude their earthly journeys in safety, prayerful community, and peace.
         </p>
 
         <!-- Collage of 3 Images using custom styled layouts instead of empty grey boxes -->
@@ -526,7 +540,7 @@
             <h2 class="font-serif font-bold text-3xl sm:text-4xl text-tealPrimary">Upcoming Events</h2>
           </div>
           <a href="#contact" class="text-terracotta hover:text-terracottaDark font-bold text-sm tracking-wide mt-4 md:mt-0 flex items-center group">
-            Suggest an event layout <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            Suggest an event <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
 
@@ -551,9 +565,9 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 4:00 PM - 8:30 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
-                Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
-              </a>
+                <a href="#event-1" data-event-id="event-1" onclick="openEvent('event-1')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+                  Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
+                </a>
             </div>
           </div>
 
@@ -576,7 +590,7 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 9:00 AM - 3:00 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+              <a href="#event-2" data-event-id="event-2" onclick="openEvent('event-2')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
                 Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
               </a>
             </div>
@@ -601,7 +615,7 @@
               <span class="text-xs text-slate-500 flex items-center">
                 <i class="far fa-clock mr-1.5 text-terracotta"></i> 12:00 PM - 4:00 PM
               </span>
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
+              <a href="#event-3" data-event-id="event-3" onclick="openEvent('event-3')" class="text-xs text-tealPrimary hover:text-terracotta font-semibold hover:underline">
                 Learn More <i class="fas fa-chevron-right text-[9px] ml-1"></i>
               </a>
             </div>
@@ -708,7 +722,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-1" data-post-id="blog-post-1" onclick="openPost('blog-post-1')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -732,7 +746,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-2" data-post-id="blog-post-2" onclick="openPost('blog-post-2')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -756,7 +770,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2">
-              <a href="#contact" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
+              <a href="#blog-post-3" data-post-id="blog-post-3" onclick="openPost('blog-post-3')" class="text-xs text-tealPrimary hover:text-terracotta font-bold tracking-wide flex items-center group-hover:translate-x-1 transition-transform">
                 Read More <i class="fas fa-arrow-right text-[10px] ml-2"></i>
               </a>
             </div>
@@ -941,6 +955,8 @@
       </div>
     </section>
 
+    </main>
+
     <!-- 13. FOOTER -->
     <footer class="reveal bg-tealDark text-white mt-auto pt-16 pb-8 border-t border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -952,7 +968,7 @@
             <a href="#home" class="flex items-center space-x-1.5 group">
               <img src="/assets/asset.png" alt="St. John Mary Vianney Logo" class="w-10 h-10 rounded-full object-cover shadow-md">
               <span class="font-serif font-bold text-lg md:text-xl tracking-tight text-white group-hover:text-accent transition-colors">
-                ST. JOHN MARY VIANNEY
+                ST. JOHN MARY VIANNEY GROUP
               </span>
             </a>
             
@@ -997,9 +1013,9 @@
               Located in serene forest groves in Dutchess County, upstate New York. Serving our regional bishops and chapels.
             </p>
             <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-              <span class="text-xs uppercase font-bold text-accent tracking-wider block mb-1">Tax-Exempt Standard</span>
+              <span class="text-xs uppercase font-bold text-accent tracking-wider block mb-1">Disclaimer</span>
               <p class="text-[11px] text-white/60 leading-snug">
-                All donations qualify for federal 501(c)(3) income reductions. Receipts generated in early business quarters.
+                St. John Mary Vianney is a voluntary lay group. Donations are used solely for the care of elderly clergy and religious. We are not a registered financial institution and cannot guarantee tax benefits.
               </p>
             </div>
           </div>
@@ -1156,6 +1172,120 @@
 
     <!-- HIDDEN REACT CONTAINER for framework template safety checks -->
     <div id="root" style="display: none;" class="hidden pointer-events-none"></div>
+
+    <!-- BLOG POST DETAIL VIEW (hidden by default) -->
+    <div id="post-detail-view" class="hidden fixed inset-0 z-20 overflow-auto bg-sand">
+      <div class="max-w-5xl mx-auto">
+        <div class="pt-6 px-4">
+          <button id="post-back-btn" onclick="closePost()" class="inline-flex items-center space-x-2 bg-white border border-gray-100 shadow rounded-full px-4 py-2 text-sm font-semibold text-tealPrimary hover:bg-tealPrimary hover:text-white transition-all">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to News</span>
+          </button>
+        </div>
+
+        <!-- Hero Banner -->
+        <div id="post-hero" class="relative mt-6 rounded-b-2xl overflow-hidden h-64 md:h-80 shadow-lg" style="background-size:cover; background-position:center;">
+          <div class="absolute inset-0 hero-overlay"></div>
+          <div class="absolute left-0 bottom-4 w-full px-6 md:px-8">
+            <h1 id="post-title" class="font-serif text-2xl md:text-4xl text-white font-bold"></h1>
+          </div>
+        </div>
+
+        <!-- Metadata -->
+        <div id="post-meta" class="px-6 md:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
+          <div class="text-sm text-slate-600" id="post-meta-left"></div>
+          <div id="post-category" class="text-sm"></div>
+        </div>
+
+        <!-- Post Body -->
+        <article id="post-body" class="px-6 md:px-8 pb-12 prose max-w-none text-charcoal/90"></article>
+
+        <!-- Related Posts -->
+        <section id="related-posts" class="px-6 md:px-8 pb-20">
+          <h3 class="font-serif font-bold text-tealPrimary text-xl mb-4">Related Posts</h3>
+          <div id="related-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- EVENT DETAIL VIEW (hidden by default) -->
+    <div id="event-detail-view" class="hidden fixed inset-0 z-20 overflow-auto">
+      <div class="max-w-5xl mx-auto">
+        <div class="pt-6 px-4">
+          <button id="event-back-btn" onclick="closeEvent()" class="inline-flex items-center space-x-2 bg-white border border-gray-100 shadow rounded-full px-4 py-2 text-sm font-semibold text-tealPrimary hover:bg-tealPrimary hover:text-white transition-all">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Events</span>
+          </button>
+        </div>
+
+        <!-- Hero Banner -->
+        <div id="event-hero" class="relative mt-6 rounded-b-2xl overflow-hidden h-64 md:h-80 shadow-lg" style="background-size:cover; background-position:center;">
+          <div class="absolute inset-0 event-hero-overlay"></div>
+          <div class="absolute left-6 top-6">
+            <div id="event-hero-date" class="inline-flex flex-col items-center justify-center bg-terracotta/10 text-terracotta rounded-2xl px-4 py-2">
+              <span id="event-hero-month" class="text-xs uppercase font-bold tracking-widest leading-none">Jun</span>
+              <span id="event-hero-day" class="text-2xl font-bold font-serif leading-none mt-1">24</span>
+            </div>
+          </div>
+          <div class="absolute left-0 bottom-4 w-full px-6 md:px-8">
+            <h1 id="event-title" class="font-serif text-2xl md:text-4xl text-white font-bold"></h1>
+          </div>
+        </div>
+
+        <!-- Event Meta Row -->
+        <div id="event-meta-row" class="px-6 md:px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0">
+          <div class="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-6">
+            <div class="flex items-center space-x-2 event-meta"><i class="far fa-clock"></i><span id="event-datetime" class="text-sm"></span></div>
+            <div class="flex items-center space-x-2 event-meta"><i class="fas fa-map-pin"></i><span id="event-location" class="text-sm"></span></div>
+          </div>
+          <div>
+            <button id="register-interest-btn" class="event-register-btn text-sm font-bold px-6 py-3 rounded-full">REGISTER YOUR INTEREST</button>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <section id="event-description" class="px-6 md:px-8 pb-8">
+          <div class="max-w-[780px] mx-auto">
+            <div id="event-desc-content" class="text-sm"></div>
+          </div>
+        </section>
+
+        <!-- Registration Form -->
+        <section id="event-register" class="px-6 md:px-8 pb-12 max-w-2xl mx-auto">
+          <h3 id="event-register-heading" class="font-serif font-bold text-2xl mb-3">Register Your Interest</h3>
+          <p class="text-sm text-slate-700 mb-6">Let us know you're coming — we'll be in touch with full details closer to the date.</p>
+
+          <form id="event-register-form" class="space-y-4" onsubmit="handleEventRegister(event)">
+            <div>
+              <label class="text-xs font-semibold">Full Name *</label>
+              <input type="text" id="evt-name" required class="w-full" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold">WhatsApp Number *</label>
+              <input type="tel" id="evt-phone" required placeholder="e.g. +234 801 234 5678" class="w-full" />
+              <div class="text-[12px] mt-2" style="color: #A8D4BE;">We will contact you via WhatsApp with event details</div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold">Number of Attendees *</label>
+              <input type="number" id="evt-attendees" min="1" max="10" value="1" required class="w-full" />
+            </div>
+
+            <button type="submit" id="evt-submit" class="w-full bg-[#2C4A3E] text-[#FAFAF6] font-bold py-3 rounded-full">Submit Interest</button>
+          </form>
+
+          <div id="evt-thanks" class="hidden text-center py-8">
+            <div class="text-3xl text-[var(--event-mint)] mb-3"><i class="fas fa-circle-check"></i></div>
+            <div class="font-semibold text-[var(--event-mint)]">Thank you! We have received your interest and will be in touch soon. God bless you.</div>
+          </div>
+        </section>
+
+        <!-- Other Events -->
+        <section id="other-events" class="px-6 md:px-8 pb-20">
+          <h3 class="font-serif font-bold text-tealPrimary text-xl mb-4">Other Upcoming Events</h3>
+          <div id="other-events-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- VANILLA JAVASCRIPT FOR LANDING INTERFACES -->
@@ -1184,8 +1314,10 @@
       // Navigation scroll tracking active section (Visual Cue highlight)
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav a');
+      // Allow pausing the scroll-spy when viewing an isolated post
+      let scrollSpyEnabled = true;
 
-      window.addEventListener('scroll', () => {
+      function updateActiveNavFromScroll() {
         let current = '';
         sections.forEach(section => {
           const sectionTop = section.offsetTop;
@@ -1201,7 +1333,22 @@
             link.classList.add('text-accent', 'font-semibold');
           }
         });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollSpyEnabled) return;
+        updateActiveNavFromScroll();
       });
+
+      // Helper to explicitly set active nav link by hash (e.g., '#blog')
+      function setActiveNavByHash(hash) {
+        navLinks.forEach(link => {
+          link.classList.remove('text-accent', 'font-semibold');
+          if (link.getAttribute('href') === hash) {
+            link.classList.add('text-accent', 'font-semibold');
+          }
+        });
+      }
 
       // Mobile Hamburger Navigation Toggling Handler
       const mobileBtn = document.getElementById('mobile-menu-btn');
